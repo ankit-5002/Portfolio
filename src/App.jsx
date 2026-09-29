@@ -5,12 +5,11 @@ import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import MobileMenu from './components/MobileMenu';
 import Hero from './components/Hero';
-import Ticker from './components/Ticker';
-import Beliefs from './components/Beliefs';
 import About from './components/About';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import Skills from './components/Skills';
 import CuttingMatBoard from './components/CuttingMatBoard';
+import FeaturedProjectsStack from './components/FeaturedProjectsStack';
 
 
 import Contact from './components/Contact';
@@ -23,7 +22,6 @@ import AtelierPage from './pages/AtelierPage';
 
 import './index.css';
 
-import Lab from './components/Lab';
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
@@ -122,12 +120,10 @@ export default function App() {
       <>
         <main id="top">
           <Hero onNavigate={navigate} />
-          <Beliefs />
           <About />
           <Skills />
+          <FeaturedProjectsStack />
           <CuttingMatBoard />
-          <Lab />
-          <Ticker />
 
 
           <Contact onShowToast={showToast} />

@@ -12,10 +12,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="wrap foot-in">
-        <span>© 2026 YOUR NAME</span>
-        <span className="foot-hand">
-          everything you ship, <b>ship it with care.</b>
-        </span>
+        <span>© 2026 Ankit</span>
         <button id="top-btn" onClick={handleScrollTop}>
           BACK TO TOP <ArrowUp size={16} />
         </button>

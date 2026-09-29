@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import Work from '../components/Work';
 import SideQuests from '../components/SideQuests';
+import Lab from '../components/Lab';
+import Ticker from '../components/Ticker';
 import Footer from '../components/Footer';
 
 export default function WorkPage({ onNavigate }) {
@@ -17,6 +19,8 @@ export default function WorkPage({ onNavigate }) {
       </header>
       <main className="subpage-main">
         <Work />
+        <Lab />
+        <Ticker />
         <SideQuests />
       </main>
       <Footer />

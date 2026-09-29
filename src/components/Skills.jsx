@@ -27,18 +27,14 @@ export default function Skills() {
   }, []);
 
   // --- Animation Phasing ---
+  // Phase 1: Box expansion (0% to 50%)
+  const anim = Math.min(1, progress / 0.50); 
   
-  // Phase 1: Box expansion (0% to 20%)
-  const anim = Math.min(1, progress / 0.20); 
+  // Phase 2: Work Experience block slides up (30% to 100%)
+  const p1Progress = Math.min(1, Math.max(0, (progress - 0.30) / 0.70));
   
-  // Phase 2: Title fades out smoothly (20% to 40%)
-  const titleFadeOut = Math.min(1, Math.max(0, (progress - 0.20) / 0.20));
-  
-  // Phase 3-5: Project cards slide up
-  // Card 1 starts exactly at 20% (simultaneously with the title fading out)
-  const p1Progress = Math.min(1, Math.max(0, (progress - 0.20) / 0.25));
-  const p2Progress = Math.min(1, Math.max(0, (progress - 0.45) / 0.25));
-  const p3Progress = Math.min(1, Math.max(0, (progress - 0.70) / 0.25));
+  // Phase 3: Title fades out as work experience slides in (30% to 60%)
+  const titleMove = Math.min(1, Math.max(0, (progress - 0.30) / 0.30));
 
   // SKILLS heading: moves up and fades out (happens during Phase 1)
   const headingOpacity = Math.max(0, 1 - anim * 4); 
@@ -76,32 +72,7 @@ export default function Skills() {
     }
   ];
 
-  const projects = [
-    {
-      id: 1,
-      title: "EcoPackAI",
-      sub: "Sustainable ML Packaging Engine",
-      img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-      p: p1Progress,
-      nextP: p2Progress
-    },
-    {
-      id: 2,
-      title: "RAG Engine",
-      sub: "Cited Vector Search REST API",
-      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-      p: p2Progress,
-      nextP: p3Progress
-    },
-    {
-      id: 3,
-      title: "NLP Resume Parser",
-      sub: "Unstructured Data Pipeline",
-      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-      p: p3Progress,
-      nextP: 0 // last card doesn't get scaled down
-    }
-  ];
+
 
   return (
     <section 
@@ -109,8 +80,8 @@ export default function Skills() {
       ref={containerRef}
       style={{
         position: 'relative',
-        height: '600vh', // Extended to accommodate the 3 stacked cards
-        backgroundColor: 'var(--bg)',
+        height: '300vh', 
+        backgroundColor: '#240605',
       }}
     >
       <div 
@@ -290,10 +261,10 @@ export default function Skills() {
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: `calc(${anim} * 100vw)`,
-            height: `calc(${anim} * 100vh)`,
+            width: `calc(${anim} * 110vw)`,
+            height: `calc(${anim} * 110vh)`,
             transform: 'translate(-50%, -50%)',
-            backgroundColor: 'var(--bg)', 
+            backgroundColor: '#EBE4D4',
             border: `4px solid rgba(235, 228, 212, ${Math.max(0, 1 - anim * 1.5)})`, 
             borderRadius: `calc(12px * (1 - ${anim}))`, 
             zIndex: 8,
@@ -306,25 +277,23 @@ export default function Skills() {
             willChange: 'width, height, border-radius'
           }}
         >
-          {/* Inner Title of Hero Card (Fades out as projects slide in) */}
+          {/* Inner Title of Hero Card (Moves to top left as experiences slide in) */}
           <div 
             style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
-              opacity: Math.max(0, Math.min(1, anim * 1.5)) * (1 - titleFadeOut), 
+              opacity: Math.max(0, Math.min(1, anim * 1.5)) * (1 - titleMove), 
               transform: `translate(-50%, -50%) scale(${0.5 + anim * 0.5})`, 
               color: '#EFEBE4',
-              textAlign: 'center',
               willChange: 'opacity, transform',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '16px',
-              minWidth: '80vw' 
+              gap: '16px'
             }}
           >
-            <div style={{ position: 'relative', display: 'inline-block', textAlign: 'left' }}>
+            <div style={{ position: 'relative', display: 'inline-block', textAlign: 'center' }}>
               <h1 style={{ 
                 fontFamily: "'Penelope', var(--disp), serif", 
                 fontSize: 'clamp(4rem, 9vw, 7rem)', 
@@ -333,9 +302,9 @@ export default function Skills() {
                 fontWeight: 'normal',
                 textTransform: 'uppercase',
                 letterSpacing: '2px',
-                color: '#EBE4D4'
+                color: '#240605'
               }}>
-                FEATURED<br/>PROJECTS.
+                WORK<br/>EXPERIENCE.
               </h1>
               <p style={{ 
                 position: 'absolute',
@@ -345,109 +314,56 @@ export default function Skills() {
                 fontFamily: 'var(--body)', 
                 fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)', 
                 margin: 0, 
-                color: '#A09D98',
+                color: '#240605',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 fontWeight: 500,
                 textAlign: 'left',
               }}>
-                CRAFTED WITH INTENTION,<br/>AND CODE.
+                THE JOURNEY SO FAR.
               </p>
             </div>
           </div>
 
-          {/* Stacking Project Cards */}
-          {projects.map((proj, i) => {
-            // Translate Y from 100vh down, to 0. 
-            const translateY = (1 - proj.p) * 100;
-            
-            return (
-              <div 
-                key={proj.id}
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  width: 'min(90vw, 1000px)',
-                  height: 'min(70vh, 600px)',
-                  transform: `translate(-50%, -50%) translateY(${translateY}vh)`,
-                  backgroundColor: '#2A2A2A',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  boxShadow: '0 -20px 50px rgba(0,0,0,0.5)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  willChange: 'transform',
-                  zIndex: 10 + i
-                }}
-              >
-                <img 
-                  src={proj.img} 
-                  alt={proj.title} 
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: 0.8
-                  }}
-                />
-                {/* Text Overlay for Project */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '0',
-                  left: '0',
-                  width: '100%',
-                  padding: '40px',
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)'
-                }}>
-                  <h3 style={{
-                    fontFamily: "'Penelope', var(--disp), serif",
-                    fontSize: 'clamp(2rem, 4vw, 3rem)',
-                    color: '#EBE4D4',
-                    margin: '0 0 10px 0',
-                    fontWeight: 'normal',
-                    textTransform: 'uppercase'
-                  }}>
-                    {proj.title}
-                  </h3>
-                  <p style={{
-                    fontFamily: 'var(--body)',
-                    color: '#A09D98',
-                    fontSize: '1.1rem',
-                    margin: 0,
-                    textTransform: 'uppercase',
-                    letterSpacing: '2px'
-                  }}>
-                    {proj.sub}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-          
-          {/* Persistent "More Projects" Button in Bottom Right */}
-          <a 
-            href="/work" 
-            className="more-projects-pill" 
-            style={{ 
-              position: 'absolute', 
-              bottom: '80px', 
-              right: '80px', 
-              zIndex: 100,
-              opacity: p1Progress > 0 ? 1 : 0,
-              transform: `translateY(${p1Progress > 0 ? '0' : '20px'})`,
-              transition: 'opacity 0.4s ease, transform 0.4s ease',
-              pointerEvents: p1Progress > 0 ? 'auto' : 'none'
-            }}
-          >
-            <span>more projects</span>
-            <div className="mp-icon-circle">
-              <ArrowUpRight size={16} />
-            </div>
-          </a>
+          {/* Work Experience Placeholder */}
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, ${100 - p1Progress * 150}%)`,
+            opacity: p1Progress > 0 ? 1 : 0,
+            width: '80%',
+            maxWidth: '800px',
+            backgroundColor: '#2A0B02',
+            padding: '40px',
+            borderRadius: '16px',
+            color: '#EBE4D4',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
+          }}>
+            <h2 style={{ fontFamily: "'Penelope', var(--disp), serif", margin: '0 0 10px', fontSize: '2.5rem', fontWeight: 'normal' }}>Company Name</h2>
+            <p style={{ fontFamily: 'var(--body)', margin: '0 0 20px', opacity: 0.8, letterSpacing: '1px' }}>SOFTWARE ENGINEER • 2022 - PRESENT</p>
+            <p style={{ fontFamily: 'var(--body)', lineHeight: 1.6 }}>Here you can implement your new work experience animation! This block slides up as you scroll, replacing the stacked cards that were moved to the next section.</p>
+          </div>
         </div>
-
       </div>
+
+      {/* 
+        Safari/Mobile 100vh bug fix:
+        When the sticky viewport reaches the bottom of the section on mobile, 
+        100vh might be smaller than the visual viewport, exposing the dark red 
+        section background. This cream block covers the bottom edge to ensure 
+        a seamless transition to the next section.
+      */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '20vh',
+        backgroundColor: '#EBE4D4',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
     </section>
   );
 }

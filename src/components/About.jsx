@@ -63,26 +63,27 @@ function StatCounter({ target, dec = 0, pad = 0, suffix = '' }) {
 }
 
 export default function About() {
-  const statsContainerRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const aboutRef = useRef(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!statsContainerRef.current) return;
-      const rect = statsContainerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      const triggerTop = windowHeight * 0.50;
-      const stackEndTop = 180;
-      const rawStackProgress = (triggerTop - rect.top) / (triggerTop - stackEndTop);
-      const clampedStackProgress = Math.max(0, Math.min(1, rawStackProgress));
-      setScrollProgress(clampedStackProgress);
+      if (!aboutRef.current) return;
+      const rect = aboutRef.current.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const p = Math.min(1, Math.max(0, -rect.top / (rect.height - windowH)));
+      setProgress(p);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const titleMove = Math.min(1, Math.max(0, progress / 0.3));
+  const contentFade = Math.min(1, Math.max(0, (progress - 0.3) / 0.3));
+  const scrollProgress = Math.min(1, Math.max(0, (progress - 0.6) / 0.4));
+  const contentShift = Math.max(0, (progress - 0.6) / 0.4);
 
   const cardsData = [
     {
@@ -136,12 +137,49 @@ export default function About() {
   ];
 
   return (
-    <section id="about">
-      <div className="wrap">
-        {/* 2-Column Main Layout: Stamp Photo on LEFT, Bio & Meta on RIGHT */}
-        <div className="about-redesign-wrap reveal in">
+    <section id="about" ref={aboutRef} style={{ height: '300vh', position: 'relative' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        
+        {/* Animated Title */}
+        <div style={{ 
+          position: 'absolute', 
+          top: `calc(50% - ${titleMove * 50}% + ${titleMove * 120}px)`,
+          left: `calc(50% - ${titleMove * 50}% + ${titleMove * 100}px)`,
+          transform: `translate(calc(-50% + ${titleMove * 50}%), calc(-50% + ${titleMove * 50}%)) scale(${1 - titleMove * 0.3})`,
+          transformOrigin: 'top left',
+          textAlign: 'left', 
+          zIndex: 5,
+          willChange: 'transform, top, left'
+        }}>
+          <div style={{ position: 'relative', display: 'inline-block', textAlign: 'left' }}>
+            <h1 style={{ fontFamily: "'Penelope', var(--disp), serif", fontSize: 'clamp(4rem, 9vw, 7rem)', lineHeight: 0.85, margin: 0, fontWeight: 'normal', textTransform: 'uppercase', letterSpacing: '2px', color: '#EBE4D4', whiteSpace: 'nowrap' }}>
+              ABOUT ME.
+            </h1>
+            <p style={{ position: 'absolute', right: '0', top: '100%', transform: 'translateY(10px)', fontFamily: 'var(--body)', fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)', margin: 0, color: '#EBE4D4', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 500, textAlign: 'left', whiteSpace: 'nowrap' }}>
+              FULL-STACK MACHINE LEARNING ENGINEER
+            </p>
+          </div>
+        </div>
+
+        {/* Content Wrapper that slides up for stats cards */}
+        <div style={{
+          transform: `translateY(-${contentShift * 60}vh)`,
+          willChange: 'transform'
+        }}>
+
+        {/* Fading Content */}
+        <div className="wrap" style={{ 
+          pointerEvents: contentFade > 0.5 ? 'auto' : 'none',
+          paddingTop: '180px' // offset so it doesn't overlap the top-left heading
+        }}>
+          <div className="about-redesign-wrap">
           {/* LEFT COLUMN: Custom Image Frame */}
-          <div className="about-polaroid-stage">
+          <div className="about-polaroid-stage" style={{
+            opacity: contentFade,
+            transform: `translateY(${100 - contentFade * 100}px)`,
+            willChange: 'opacity, transform',
+            marginTop: '180px'
+          }}>
             <div className="custom-image-frame-container">
               <img src={profileFrameImg} alt="Frame" className="custom-frame-overlay" />
               <div className="frame-text-overlay">
@@ -155,18 +193,11 @@ export default function About() {
           </div>
 
           {/* RIGHT COLUMN: Quote Box + Compact Bio Text + Highlight Badges + Meta List */}
-          <div className="about-right-col">
-            {/* Centered Title Header directly above the text column */}
-            <div className="about-hero-header">
-              <div className="about-header-title">
-                <span className="about-brush-stroke"></span>
-                <span className="about-header-text">about me</span>
-              </div>
-
-              <div className="about-subtitle-mono">
-                FULL-STACK ML ENGINEER &amp; SYSTEM BUILDER
-              </div>
-            </div>
+          <div className="about-right-col" style={{
+            opacity: contentFade,
+            willChange: 'opacity',
+            marginTop: '80px'
+          }}>
 
             {/* Red Bar Accent Quote Box */}
             <div className="about-quote-box">
@@ -227,7 +258,7 @@ export default function About() {
         </div>
 
         {/* Scroll Interactive Shrink & Downward Slide Metric Cards Container */}
-        <div className="stats-scroll-stage" ref={statsContainerRef}>
+        <div className="stats-scroll-stage" style={{ opacity: contentFade, willChange: 'opacity' }}>
           <div className="stats-stack-wrapper">
             {cardsData.map((card, idx) => {
               const baseShrink = 0.42;
@@ -269,6 +300,8 @@ export default function About() {
               );
             })}
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </section>

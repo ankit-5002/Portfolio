@@ -1,11 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { Copy, Globe } from 'lucide-react';
+import { Copy, Globe, Volume2, VolumeX, Music } from 'lucide-react';
 
 const CHARS = '#/\\{}[]=+*_%?!01';
-const EMAIL = 'hello@yourname.dev';
+const EMAIL = 'kr.ankit5002@gmail.com';
 
 export default function Contact({ onShowToast }) {
   const [displayText, setDisplayText] = useState(EMAIL.toUpperCase());
+  const [checkedItems, setCheckedItems] = useState([false, false, false]);
+  const [customMsg, setCustomMsg] = useState("");
+  const [customName, setCustomName] = useState("");
+  const [customEmail, setCustomEmail] = useState("");
+  const [showCustomForm, setShowCustomForm] = useState(false);
+  const [animState, setAnimState] = useState(''); // '' | 'flip-out' | 'flip-in-start'
+  const [isMuted, setIsMuted] = useState(true);
   const scrambleRef = useRef(null);
 
   const scrambleText = (newText, boost = 0) => {
@@ -83,58 +90,197 @@ export default function Contact({ onShowToast }) {
     }
   };
 
+  const handleToggleForm = (show) => {
+    if (show === showCustomForm) return;
+    setAnimState('flip-out');
+
+    setTimeout(() => {
+      setShowCustomForm(show);
+      setAnimState('flip-in-start');
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setAnimState('');
+        });
+      });
+    }, 350);
+  };
+
   return (
-    <section id="contact">
-      <div className="wrap">
-        <div className="sec-head reveal in">
-          <span className="sec-num">06</span>
-          <h2 className="sec-title lm">
-            <span style={{ '--d': 1 }}>
-              Say <i>hello</i>
-            </span>
-          </h2>
-          <span className="sec-line"></span>
-          <span className="sec-note">avg. response &lt; 24h</span>
-        </div>
+    <section id="contact" style={{ position: 'relative' }}>
+      <svg
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: 'clamp(45px, 6vw, 85px)',
+          fill: '#EBE4D4'
+        }}
+      >
+        <path d="M0,0 L 450,0 Q 470,0 480,20 L 530,90 Q 540,110 560,110 L 880,110 Q 900,110 910,90 L 960,20 Q 970,0 990,0 L 1440,0 Z" />
+      </svg>
+      <div className="sec-head reveal in" style={{
+        position: 'absolute',
+        top: 'clamp(0px, 0.5vw, 8px)',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 10,
+        margin: 0,
+        width: 'max-content'
+      }}>
+        <h2 className="sec-title lm" style={{
+          color: '#240605',
+          fontFamily: "'Penelope', var(--disp), serif",
+          textTransform: 'lowercase',
+          fontSize: 'clamp(3.2rem, 6.5vw, 4.8rem)'
+        }}>
+          <span style={{ '--d': 1 }}>
+            say hello
+          </span>
+        </h2>
+      </div>
+
+      <div className="wrap" style={{ position: 'relative', zIndex: 1 }}>
 
         <div className="c-grid reveal in">
-          <div className="paper-card">
+          <div className={`paper-card ${animState === 'flip-out' ? 'note-flip-out' : ''} ${animState === 'flip-in-start' ? 'note-flip-in-start' : ''}`}>
             <span className="tape tape--dark"></span>
-            <p className="lf-title">What I'm looking for</p>
-            <ul className="lf-list">
-              <li>
-                <span className="lf-box">
-                  <svg viewBox="0 0 24 24">
-                    <path pathLength="1" d="M4 12.5 l5 5.5 L20 6" />
-                  </svg>
-                </span>
-                2026 grad roles &amp; internships (ML / LLM)
-              </li>
-              <li>
-                <span className="lf-box">
-                  <svg viewBox="0 0 24 24">
-                    <path pathLength="1" d="M4 12.5 l5 5.5 L20 6" />
-                  </svg>
-                </span>
-                teams with real code review &amp; real evals
-              </li>
-              <li>
-                <span className="lf-box">
-                  <svg viewBox="0 0 24 24">
-                    <path pathLength="1" d="M4 12.5 l5 5.5 L20 6" />
-                  </svg>
-                </span>
-                problems that need receipts, not demos
-              </li>
-              <li className="off">
-                <span className="lf-box"></span>
-                "AI-powered" with nothing to evaluate
-              </li>
-            </ul>
-            <a className="btn-hand btn-hand--paper mag" href={`mailto:${EMAIL}`}>
-              let's chat!
-            </a>
-            <p className="lf-foot">CHECKED = YES · UNCHECKED = PLEASE NO</p>
+            {!showCustomForm ? (
+              <>
+                <div
+                  className="lf-title"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}
+                >
+                  What I look for
+                  <button
+                    onClick={() => handleToggleForm(true)}
+                    className="btn-hand btn-hand--paper mag"
+                    style={{
+                      width: 'auto',
+                      whiteSpace: 'nowrap',
+                      margin: 0
+                    }}
+                  >
+                    custom message
+                  </button>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: '24px', marginTop: '24px' }}>
+                  <div>
+                    <ul className="lf-list" style={{ marginTop: 0 }}>
+                      {[
+                        "2026 grad roles & internships (AI / ML)",
+                        "team for building real-world AI systems",
+                        "meaningful and impactful projects"
+                      ].map((text, idx) => (
+                        <li
+                          key={idx}
+                          className={checkedItems[idx] ? '' : 'off'}
+                          onClick={() => {
+                            const newChecked = [...checkedItems];
+                            newChecked[idx] = !newChecked[idx];
+                            setCheckedItems(newChecked);
+                          }}
+                          style={{ cursor: 'pointer', userSelect: 'none' }}
+                        >
+                          <span className="lf-box">
+                            {checkedItems[idx] && (
+                              <svg viewBox="0 0 24 24">
+                                <path pathLength="1" d="M4 12.5 l5 5.5 L20 6" />
+                              </svg>
+                            )}
+                          </span>
+                          <span className="lf-text">{text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a className="btn-hand btn-hand--paper mag" href={`mailto:${EMAIL}`}>
+                      let's chat!
+                    </a>
+                    <p className="lf-foot">CHECKED = YES · UNCHECKED = PLEASE NO</p>
+                  </div>
+                  <div style={{
+                    border: '6px solid var(--accent-ink)',
+                    borderRadius: '16px',
+                    filter: 'url(#squiggle)',
+                    aspectRatio: '1 / 1.1',
+                    width: '100%',
+                    alignSelf: 'center'
+                  }}></div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  className="lf-title"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}
+                >
+                  Your custom message
+                  <button
+                    onClick={() => handleToggleForm(false)}
+                    className="btn-hand btn-hand--paper mag"
+                    style={{
+                      width: 'auto',
+                      whiteSpace: 'nowrap',
+                      margin: 0
+                    }}
+                  >
+                    back
+                  </button>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px',
+                  marginTop: '12px',
+                  marginBottom: '16px',
+                  position: 'relative',
+                  paddingLeft: '32px'
+                }}>
+                  {/* Notebook margin line */}
+                  <div style={{
+                    position: 'absolute',
+                    left: '12px',
+                    top: '-10px',
+                    bottom: '-10px',
+                    width: '2px',
+                    backgroundColor: 'rgba(233, 93, 53, 0.3)'
+                  }} />
+                  <input
+                    type="text"
+                    className="lf-input"
+                    value={customName}
+                    onChange={(e) => setCustomName(e.target.value)}
+                    placeholder="Name"
+                  />
+                  <input
+                    type="text"
+                    className="lf-input"
+                    value={customEmail}
+                    onChange={(e) => setCustomEmail(e.target.value)}
+                    placeholder="Reach me at..."
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                  />
+                  <textarea
+                    className="lf-input"
+                    style={{ minHeight: '96px', resize: 'none' }}
+                    value={customMsg}
+                    onChange={(e) => setCustomMsg(e.target.value)}
+                    placeholder="Message..."
+                  />
+                </div>
+                <a
+                  className="btn-hand btn-hand--paper mag"
+                  href={`mailto:${EMAIL}?subject=Hello from Portfolio&body=${encodeURIComponent(`Name: ${customName}\nEmail: ${customEmail}\n\nMessage:\n${customMsg}`)}`}
+                >
+                  send message
+                </a>
+              </>
+            )}
           </div>
 
           <div className="c-right">
@@ -168,7 +314,7 @@ export default function Contact({ onShowToast }) {
             <div className="socials">
               <a
                 className="soc"
-                href="https://github.com/yourname"
+                href="https://github.com/ankit-5002"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -176,7 +322,7 @@ export default function Contact({ onShowToast }) {
               </a>
               <a
                 className="soc"
-                href="https://linkedin.com/in/yourname"
+                href="https://www.linkedin.com/in/ankit-kumar5002/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -184,7 +330,7 @@ export default function Contact({ onShowToast }) {
               </a>
               <a
                 className="soc"
-                href="https://yourname.dev"
+                href="https://ankit.antideploy.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -213,6 +359,74 @@ export default function Contact({ onShowToast }) {
             </p>
           </div>
         </div>
+
+        <div style={{ marginTop: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '20px', color: 'var(--paper)', opacity: 0.9 }}>
+              <Music size={18} color="var(--paper)" />
+              <div
+                style={{
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  width: '420px',
+                  maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)'
+                }}
+              >
+                <div
+                  style={{
+                    display: 'inline-block',
+                    animation: 'scrollText 20s linear infinite',
+                    animationPlayState: isMuted ? 'paused' : 'running',
+                    fontFamily: "'Gochi Hand', 'Patrick Hand', cursive",
+                    fontSize: '22px',
+                    letterSpacing: '0.5px'
+                  }}
+                >
+                  Country roads, take me home. To the place I belong, West Virginia, mountain mama, take me home, country roads... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Country roads, take me home. To the place I belong, West Virginia, mountain mama, take me home, country roads... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+              </div>
+              <Music size={18} color="var(--paper)" />
+            </div>
+
+            <button
+              onClick={() => setIsMuted(!isMuted)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--paper)',
+                cursor: 'pointer',
+                opacity: 0.8,
+                transition: 'opacity 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                padding: 0
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+              aria-label={isMuted ? "Unmute song" : "Mute song"}
+            >
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+          </div>
+
+          <div
+            style={{
+              fontFamily: 'var(--hand)',
+              fontSize: '64px',
+              fontWeight: 'normal',
+              color: '#e53935',
+              marginTop: '50px',
+              transform: 'rotate(-4deg)',
+              letterSpacing: '1px',
+              userSelect: 'none'
+            }}
+          >
+            Ankit <span style={{ fontSize: '32px', fontWeight: 'bold', verticalAlign: 'middle', display: 'inline-block', transform: 'rotate(90deg) translate(-2px, 8px)' }}>:)</span>
+          </div>
+        </div>
+
       </div>
     </section>
   );

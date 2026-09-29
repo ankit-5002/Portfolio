@@ -3,6 +3,60 @@ import { ArrowUpRight } from 'lucide-react';
 import paperCutImg from '../assets/papercut.png';
 import board1Img from '../assets/board1.png';
 import board2Img from '../assets/board2.png';
+const SwingingChar = ({ char, twoStrings }) => {
+  const [rot, setRot] = React.useState(0);
+
+  const handleMouseMove = (e) => {
+    // movementX gives direction. Positive is right, negative is left.
+    if (Math.abs(e.movementX) > 1) {
+      const targetRot = e.movementX > 0 ? -30 : 30;
+      setRot(targetRot);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setRot(0);
+  };
+
+  return (
+    <div 
+      className="sandbox-char-wrap" 
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        transformOrigin: 'top center',
+        cursor: 'pointer',
+        padding: '0 2px',
+        transform: `rotate(${rot}deg)`
+      }}
+    >
+      <div style={{
+        display: 'flex',
+        justifyContent: twoStrings ? 'space-between' : 'center',
+        width: twoStrings ? '60%' : '1.5px',
+        marginBottom: 'calc(-0.18 * clamp(3.2rem, 6.5vw, 4.8rem))',
+        zIndex: -1
+      }}>
+        <div style={{
+          width: '1.5px',
+          height: 'clamp(20px, 3vw, 30px)',
+          backgroundColor: '#1E4A63',
+        }} />
+        {twoStrings && (
+          <div style={{
+            width: '1.5px',
+            height: 'clamp(20px, 3vw, 30px)',
+            backgroundColor: '#1E4A63',
+          }} />
+        )}
+      </div>
+      <span>{char}</span>
+    </div>
+  );
+};
 
 const DraggableCard = ({ children, className, defaultZ = 10, isFocused, onFocus }) => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -131,6 +185,45 @@ export default function CuttingMatBoard() {
 
   return (
     <section id="cutting-mat-sec" className="cutting-mat-section" ref={sectionRef}>
+      <svg
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: 'clamp(45px, 6vw, 85px)',
+          fill: '#EBE4D4',
+          transform: 'translateY(-99%)'
+        }}
+      >
+        <path d="M0,120 L 450,120 Q 470,120 480,100 L 530,30 Q 540,10 560,10 L 880,10 Q 900,10 910,30 L 960,100 Q 970,120 990,120 L 1440,120 Z" />
+      </svg>
+      <div className="sec-head reveal in" style={{
+        position: 'absolute',
+        top: 0,
+        left: '50%',
+        transform: 'translate(-50%, calc(-0.916 * clamp(45px, 6vw, 85px)))',
+        zIndex: 10,
+        margin: 0,
+        width: 'max-content'
+      }}>
+        <h2 className="sec-title lm" style={{
+          display: 'flex',
+          gap: '2px',
+          color: '#240605',
+          fontFamily: "'Penelope', var(--disp), serif",
+          textTransform: 'uppercase',
+          fontSize: 'clamp(3.2rem, 6.5vw, 4.8rem)',
+          letterSpacing: '2px',
+        }}>
+          {"SANDBOX".split('').map((char, i) => (
+            <SwingingChar key={i} char={char} twoStrings={char === 'N' || char === 'X'} />
+          ))}
+        </h2>
+      </div>
+
       <div className="cutting-mat-wrap">
 
         {/* Outer Stacking Container */}
@@ -156,6 +249,7 @@ export default function CuttingMatBoard() {
               <img src={paperCutImg} alt="Papercut" className="papercut-img" />
               <h2 className="papercut-text">Wall of Accolades</h2>
             </div>
+
             {/* Secondary interior stroke */}
             <div className="mat-inner-stroke">
               {/* Row Numbers 1–18 along inside-left margin */}
