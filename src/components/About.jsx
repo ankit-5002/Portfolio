@@ -1,66 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import profileFrameImg from '../assets/Profile_Frame.png';
-import { MapPin } from 'lucide-react';
+import card3Img from '../assets/card5.png';
+import headshotImg from '../assets/picture1.png';
+import { MapPin, Download, ArrowUpRight, Info } from 'lucide-react';
 
-function StatCounter({ target, dec = 0, pad = 0, suffix = '' }) {
-  const [value, setValue] = useState('0');
-  const domRef = useRef(null);
-  const hasRun = useRef(false);
-
-  useEffect(() => {
-    const el = domRef.current;
-    if (!el) return;
-
-    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const formatValue = val => {
-      if (pad) return String(Math.round(val)).padStart(pad, '0');
-      return val.toFixed(dec);
-    };
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting || hasRun.current) return;
-          hasRun.current = true;
-
-          if (reducedMotion) {
-            setValue(formatValue(target));
-            return;
-          }
-
-          const startTime = performance.now();
-          const duration = 1600;
-
-          const animate = now => {
-            const p = Math.min(1, (now - startTime) / duration);
-            const e = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-            setValue(formatValue(target * e));
-
-            if (p < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setValue(formatValue(target));
-            }
-          };
-
-          requestAnimationFrame(animate);
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target, dec, pad]);
-
-  return (
-    <span ref={domRef}>
-      {value}
-      {suffix}
-    </span>
-  );
-}
 
 export default function About() {
   const aboutRef = useRef(null);
@@ -80,76 +23,24 @@ export default function About() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const titleMove = Math.min(1, Math.max(0, progress / 0.3));
-  const contentFade = Math.min(1, Math.max(0, (progress - 0.3) / 0.3));
-  const scrollProgress = Math.min(1, Math.max(0, (progress - 0.6) / 0.4));
-  const contentShift = Math.max(0, (progress - 0.6) / 0.4);
-
-  const cardsData = [
-    {
-      id: 1,
-      target: 9.37,
-      dec: 2,
-      label: 'CGPA / 10 — B.Tech CSE',
-      sectionTitle: 'About & Core CS',
-      className: 'stat--c1',
-      color: '#FFFFFF',
-      rot: -5.5,
-      targetX: 480,
-      targetY: -12,
-    },
-    {
-      id: 2,
-      target: 2,
-      pad: 2,
-      label: 'Production-grade ML & RAG systems',
-      sectionTitle: 'Technical Skills',
-      className: 'stat--c2',
-      color: '#211D18',
-      rot: 4.2,
-      targetX: 160,
-      targetY: -4,
-    },
-    {
-      id: 3,
-      target: 50,
-      suffix: 'K+',
-      label: 'Unstructured resume tokens parsed',
-      sectionTitle: 'System Intelligence',
-      className: 'stat--c3',
-      color: '#211D18',
-      rot: -3.6,
-      targetX: -160,
-      targetY: 4,
-    },
-    {
-      id: 4,
-      target: 5,
-      suffix: '×',
-      label: 'Hackathon wins',
-      sectionTitle: 'Featured Projects',
-      className: 'stat--c4',
-      color: '#211D18',
-      rot: 6.2,
-      targetX: -480,
-      targetY: 12,
-    },
-  ];
+  const titleOpacity = 1 - Math.min(1, Math.max(0, progress / 0.50));
+  const polaroidAnim = Math.min(1, Math.max(0, progress / 0.35));
+  const cardAnim = Math.min(1, Math.max(0, (progress - 0.25) / 0.35));
 
   return (
-    <section id="about" ref={aboutRef} style={{ height: '300vh', position: 'relative' }}>
+    <section id="about" ref={aboutRef} style={{ height: '200vh', position: 'relative' }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         
         {/* Animated Title */}
         <div style={{ 
           position: 'absolute', 
-          top: `calc(50% - ${titleMove * 50}% + ${titleMove * 120}px)`,
-          left: `calc(50% - ${titleMove * 50}% + ${titleMove * 100}px)`,
-          transform: `translate(calc(-50% + ${titleMove * 50}%), calc(-50% + ${titleMove * 50}%)) scale(${1 - titleMove * 0.3})`,
-          transformOrigin: 'top left',
-          textAlign: 'left', 
+          top: '50%',
+          left: '50%',
+          transform: `translate(-50%, -50%)`,
+          opacity: titleOpacity,
+          pointerEvents: titleOpacity < 0.1 ? 'none' : 'auto',
           zIndex: 5,
-          willChange: 'transform, top, left'
+          willChange: 'opacity'
         }}>
           <div style={{ position: 'relative', display: 'inline-block', textAlign: 'left' }}>
             <h1 style={{ fontFamily: "'Penelope', var(--disp), serif", fontSize: 'clamp(4rem, 9vw, 7rem)', lineHeight: 0.85, margin: 0, fontWeight: 'normal', textTransform: 'uppercase', letterSpacing: '2px', color: '#EBE4D4', whiteSpace: 'nowrap' }}>
@@ -161,55 +52,44 @@ export default function About() {
           </div>
         </div>
 
-        {/* Content Wrapper that slides up for stats cards */}
-        <div style={{
-          transform: `translateY(-${contentShift * 60}vh)`,
-          willChange: 'transform'
-        }}>
+
 
         {/* Fading Content */}
         <div className="wrap" style={{ 
-          pointerEvents: contentFade > 0.5 ? 'auto' : 'none',
-          paddingTop: '180px' // offset so it doesn't overlap the top-left heading
+          pointerEvents: cardAnim > 0.5 ? 'auto' : 'none',
+          paddingTop: '60px' // reduced offset so the heading overlaps the card
         }}>
-          <div className="about-redesign-wrap">
-          {/* LEFT COLUMN: Custom Image Frame */}
-          <div className="about-polaroid-stage" style={{
-            opacity: contentFade,
-            transform: `translateY(${100 - contentFade * 100}px)`,
+          <div className="about-redesign-wrap" style={{ position: 'relative' }}>
+          {/* LEFT COLUMN: Card (formerly right column) */}
+          <div className="about-right-col card-theme" style={{
+            opacity: 1,
+            transform: `translateY(${1000 - cardAnim * 1000}px) rotate(-2deg)`,
             willChange: 'opacity, transform',
-            marginTop: '180px'
-          }}>
-            <div className="custom-image-frame-container">
-              <img src={profileFrameImg} alt="Frame" className="custom-frame-overlay" />
-              <div className="frame-text-overlay">
-                ANKIT KUMAR
-              </div>
-            </div>
-
-            <div className="polaroid-subnote">
-              student by title, <span className="wavy-underline">builder by habit</span>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: Quote Box + Compact Bio Text + Highlight Badges + Meta List */}
-          <div className="about-right-col" style={{
-            opacity: contentFade,
-            willChange: 'opacity',
-            marginTop: '80px'
+            marginTop: '120px',
+            backgroundImage: `url(${card3Img})`,
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            padding: '80px 80px 60px 80px', 
+            color: '#240605',
+            zIndex: 1,
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
           }}>
 
             {/* Red Bar Accent Quote Box */}
-            <div className="about-quote-box">
+            <div className="about-quote-box" style={{ marginBottom: '10px' }}>
               <p>
                 I like ML best when it stops being a notebook and starts being a <em className="wavy-underline">system</em> — served over an API, checked by evals, trusted by people.
               </p>
             </div>
 
             {/* Compact Paragraph 2: Education & Infosys Internship Highlights */}
-            <div className="about-bio-text">
+            <div className="about-bio-text" style={{ marginBottom: '10px' }}>
               <p>
-                I'm a B.Tech CSE graduate from <span className="highlight-pill">Centurion University</span> (CGPA 9.37/10). Recently completed my ML Internship at <span className="highlight-badge-white">Infosys Springboard</span>, where I built <strong>EcoPackAI</strong> end-to-end — a full-stack ML platform that recommends sustainable packaging and predicts carbon footprint and cost.
+                I'm a B.Tech CSE graduate from <span className="highlight-pill" style={{backgroundColor: 'rgba(36, 6, 5, 0.1)', color: '#240605'}}>Centurion University</span> (CGPA 9.37/10). Recently completed my ML Internship at <span className="highlight-badge-white" style={{backgroundColor: '#8B0000', color: '#EBE4D4', borderColor: '#8B0000'}}>Infosys Springboard</span>, where I built <strong>EcoPackAI</strong> end-to-end — a full-stack ML platform that recommends sustainable packaging and predicts carbon footprint and cost.
               </p>
               <p style={{ marginTop: '10px' }}>
                 On my own time I've built a production-grade RAG chatbot with enforced citations, and an NLP resume parser. I'm drawn to evaluation datasets, CI checks, and data cleaning — because that's where actual quality lives.
@@ -220,7 +100,7 @@ export default function About() {
             <div className="about-meta-box">
               <div className="about-meta-row">
                 <span className="about-meta-label">BASED IN</span>
-                <span className="about-meta-val loc-item">
+                <span className="about-meta-val loc-item" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
                   <MapPin size={13} className="loc-pin" /> <strong>BENGALURU, INDIA</strong> — OPEN TO RELOCATE
                 </span>
               </div>
@@ -240,7 +120,7 @@ export default function About() {
                 </span>
               </div>
               <div className="about-meta-row">
-                <span className="about-meta-label">EDUCATION</span>
+                <span className="about-meta-label">QUALIFICATION</span>
                 <span className="about-meta-val">
                   <strong>B.TECH CSE '26 — CGPA 9.37/10</strong>
                 </span>
@@ -248,61 +128,116 @@ export default function About() {
               <div className="about-meta-row">
                 <span className="about-meta-label">STATUS</span>
                 <span className="about-meta-val">
-                  <span className="status-pill">
-                    <span className="green-blink"></span> OPEN TO GRAD ROLES &amp; INTERVIEWS
+                  <span className="status-pill" style={{ color: '#0F5132', background: 'rgba(15, 81, 50, 0.1)', borderColor: 'rgba(15, 81, 50, 0.2)' }}>
+                    <span className="green-blink" style={{ background: '#0F5132' }}></span> OPEN TO GRAD ROLES &amp; INTERVIEWS
                   </span>
                 </span>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Scroll Interactive Shrink & Downward Slide Metric Cards Container */}
-        <div className="stats-scroll-stage" style={{ opacity: contentFade, willChange: 'opacity' }}>
-          <div className="stats-stack-wrapper">
-            {cardsData.map((card, idx) => {
-              const baseShrink = 0.42;
-              const scale = 1 - scrollProgress * baseShrink;
-              const tx = scrollProgress * card.targetX;
-              const ty = scrollProgress * card.targetY;
-              const rot = scrollProgress * card.rot;
-
-              return (
-                <div
-                  key={card.id}
-                  className={`stat-stacked-card ${card.className}`}
-                  style={{
-                    zIndex: idx + 1,
-                    transform: `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg) scale(${scale})`,
-                    boxShadow: scrollProgress > 0.05
-                      ? `0 ${10 + idx * 4}px ${24 + idx * 6}px -8px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.4)`
-                      : 'none'
-                  }}
-                >
-                  <div className="notebook-lines-pattern"></div>
-
-                  <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <span className="stat-num" style={{ color: card.color }}>
-                        <StatCounter
-                          target={card.target}
-                          dec={card.dec}
-                          pad={card.pad}
-                          suffix={card.suffix}
-                        />
-                      </span>
-                      <span className="stat-label" style={{ color: card.color, opacity: 0.9 }}>
-                        {card.label}
-                      </span>
-                    </div>
-                  </div>
+            <div className="about-actions" style={{ 
+              display: 'flex', 
+              gap: '15px', 
+              marginTop: '15px',
+              flexWrap: 'wrap'
+            }}>
+              <a href="/resume.pdf" download className="more-projects-pill" style={{
+                position: 'relative',
+                bottom: 'auto',
+                right: 'auto',
+                zIndex: 10,
+                textDecoration: 'none',
+                backgroundColor: 'transparent',
+                color: '#240605',
+                border: '1px solid rgba(36, 6, 5, 0.4)',
+                boxShadow: 'none'
+              }}>
+                <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '1px', textTransform: 'uppercase' }}>DOWNLOAD RESUME</span>
+                <div className="mp-icon-circle" style={{ backgroundColor: 'transparent', color: '#240605', boxShadow: 'none' }}>
+                  <Download size={14} />
                 </div>
-              );
-            })}
+              </a>
+              <a href="#contact" className="lets-talk-btn" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '10px 24px',
+                backgroundColor: 'transparent',
+                color: '#240605',
+                border: '1px solid rgba(36, 6, 5, 0.4)',
+                borderRadius: '50px',
+                textDecoration: 'none',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: '600',
+                fontSize: '11px',
+                letterSpacing: '1px',
+                transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)'
+              }}>
+                LET'S TALK <ArrowUpRight size={14} className="lets-talk-icon" style={{ transition: 'transform 0.3s ease' }} />
+              </a>
+            </div>
+
+            {/* Expandable Journey Button */}
+            <a href="/journey" className="journey-info-btn">
+              <Info size={16} style={{ flexShrink: 0 }} />
+              <span className="journey-text">THE FULL STORY</span>
+            </a>
+          </div>
+
+          {/* RIGHT COLUMN: Custom Image Frame */}
+          <div className="about-polaroid-stage" style={{
+            opacity: 1,
+            transform: `translateY(${1000 - polaroidAnim * 1000}px) rotate(6deg)`,
+            willChange: 'opacity, transform',
+            zIndex: 2,
+            position: 'absolute',
+            right: '-20px',
+            top: '0px',
+            width: '340px',
+            filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.5))'
+          }}>
+            <div className="custom-image-frame-container" style={{ position: 'relative', width: '100%', padding: 0 }}>
+              {/* The Headshot placed underneath the frame cutout */}
+              <img 
+                src={headshotImg} 
+                alt="Ankit Kumar Headshot" 
+                style={{ 
+                  position: 'absolute',
+                  top: '12%',
+                  left: '10%',
+                  width: '80%',
+                  height: '70%',
+                  objectFit: 'cover',
+                  zIndex: 1
+                }} 
+              />
+              {/* The Transparent Polaroid Frame */}
+              <img src={profileFrameImg} alt="Frame" className="custom-frame-overlay" style={{ position: 'relative', zIndex: 2, width: '100%', height: 'auto', pointerEvents: 'none' }} />
+              <div className="frame-text-overlay" style={{ zIndex: 3, bottom: '8%', color: '#240605' }}>
+                ANKIT KUMAR
+              </div>
+            </div>
+          </div>
+          
+          {/* Floating Subnote */}
+          <div className="polaroid-subnote" style={{ 
+            position: 'absolute', 
+            bottom: '30px', 
+            right: '-60px', 
+            color: '#FFFFFF',
+            textShadow: '0 2px 4px rgba(0,0,0,0.4)',
+            transform: `rotate(-3deg) translateY(${50 - polaroidAnim * 50}px)`,
+            opacity: polaroidAnim,
+            willChange: 'opacity, transform'
+          }}>
+            <div>student by title, <span className="wavy-underline">builder by habit</span></div>
+            <div style={{ marginTop: '12px' }}><span style={{ borderBottom: '2px solid #E63946', paddingBottom: '2px', fontFamily: 'Inter, sans-serif', fontWeight: 'bold' }}>5x</span> hackathon wins...</div>
+          </div>
           </div>
         </div>
-        </div>
-        </div>
+
+
+
       </div>
     </section>
   );

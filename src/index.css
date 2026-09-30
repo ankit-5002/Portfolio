@@ -1901,12 +1901,11 @@ section {
 
 /* 2. Main 2-Column Grid Layout */
 .about-redesign-wrap {
-  display: grid;
-  grid-template-columns: 290px 1fr;
-  gap: clamp(48px, 6vw, 84px);
-  align-items: center;
+  position: relative;
   max-width: 1100px;
+  width: 95%;
   margin: 0 auto 70px auto;
+  transform: translateX(-50px);
 }
 
 /* Left Column Polaroid */
@@ -1985,7 +1984,7 @@ section {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: 700px;
+  max-width: 850px;
   margin-left: 24px;
 }
 
@@ -2043,10 +2042,10 @@ section {
 
 .about-meta-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
-  padding: 12px 0;
+  padding: 6px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--mono);
   font-size: clamp(11px, 0.9vw, 12.5px);
@@ -2057,11 +2056,12 @@ section {
   font-weight: 500;
   letter-spacing: 0.1em;
   white-space: nowrap;
+  min-width: 289px;
 }
 
 .about-meta-val {
   color: #EEEEEE;
-  text-align: right;
+  text-align: left;
 }
 
 .focus-tags {
@@ -6038,4 +6038,76 @@ footer {
 }
 .sandbox-char-wrap {
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lets-talk-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  background-color: rgba(235, 228, 212, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(235, 228, 212, 0.1);
+}
+
+.lets-talk-btn:hover .lets-talk-icon {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* Overrides for About Card text visibility */
+.about-right-col.card-theme .about-quote-box p,
+.about-right-col.card-theme .about-bio-text,
+.about-right-col.card-theme .about-meta-label,
+.about-right-col.card-theme .about-meta-val {
+  color: #240605 !important;
+}
+
+.about-right-col.card-theme .meta-tag {
+  color: #240605 !important;
+  background: rgba(36, 6, 5, 0.05);
+  border-color: rgba(36, 6, 5, 0.2);
+}
+
+.about-right-col.card-theme .about-quote-box {
+  border-left-color: #240605 !important;
+}
+
+.journey-info-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  background-color: transparent;
+  color: #240605;
+  border: 1px solid rgba(36, 6, 5, 0.4);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.journey-info-btn:hover {
+  width: 170px;
+  justify-content: flex-start;
+  padding-left: 12px;
+}
+
+.journey-text {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0;
+  max-width: 0;
+  margin-left: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.journey-info-btn:hover .journey-text {
+  opacity: 1;
+  max-width: 140px;
+  margin-left: 8px;
 }

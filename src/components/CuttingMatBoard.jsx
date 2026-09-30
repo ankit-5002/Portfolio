@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import paperCutImg from '../assets/papercut.png';
-import board1Img from '../assets/board1.png';
-import board2Img from '../assets/board2.png';
+import board1Img from '../assets/project1.png';
+import board2Img from '../assets/project2.png';
 const SwingingChar = ({ char, twoStrings }) => {
   const [rot, setRot] = React.useState(0);
 
