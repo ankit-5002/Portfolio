@@ -178,7 +178,7 @@ export default function About() {
             </div>
 
             {/* Expandable Journey Button */}
-            <a href="/journey" className="journey-info-btn">
+            <a href="/about" className="journey-info-btn">
               <Info size={16} style={{ flexShrink: 0 }} />
               <span className="journey-text">THE FULL STORY</span>
             </a>

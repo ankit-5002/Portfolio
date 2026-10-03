@@ -13,9 +13,8 @@ import faceIcon from '../assets/face_icon.png';
 const WORDS = ['maintainable', 'scalable', 'intelligent', 'deployed'];
 
 const NAV_ITEMS = [
-  { id: 'about', label: 'about', href: '#about', icon: aboutIcon },
   { id: 'work', label: 'work', href: '/work', path: '/work', icon: workIcon },
-  { id: 'journey', label: 'journey', href: '/journey', path: '/journey', icon: journeyIcon },
+  { id: 'about', label: 'about', href: '/about', path: '/about', icon: aboutIcon },
   { id: 'atelier', label: 'atelier', href: '/atelier', path: '/atelier', icon: atelierIcon },
   { id: 'connect', label: 'connect', href: '#contact', icon: connectIcon },
 ];

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-export default function Journey() {
+export default function AboutDetails() {
   const listRef = useRef(null);
   const fillRef = useRef(null);
 
@@ -26,7 +26,7 @@ export default function Journey() {
         <div className="sec-head reveal in">
           <span className="sec-num">03</span>
           <h2 className="sec-title lm">
-            <span style={{ '--d': 1 }}>Journey</span>
+            <span style={{ '--d': 1 }}>About</span>
           </h2>
           <span className="sec-line"></span>
           <span className="sec-note">so far — more ink coming</span>

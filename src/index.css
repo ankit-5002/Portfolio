@@ -265,7 +265,7 @@ section {
 .doodle--chalk path,
 .doodle--chalk circle,
 .doodle--chalk ellipse {
-  stroke: rgba(237, 233, 224, .6)
+  stroke: #EBE4D4;
 }
 
 .doodle--accent path,
@@ -3761,15 +3761,15 @@ textarea.lf-input {
   align-items: center;
   gap: 10px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: .18em;
   color: var(--muted);
   transition: color .3s
 }
 
 .soc svg {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   transition: transform .3s var(--ease)
 }
 
@@ -3816,7 +3816,7 @@ footer {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: .16em;
-  color: var(--muted);
+  color: #EBE4D4;
   text-transform: uppercase
 }
 
@@ -3841,7 +3841,7 @@ footer {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: .16em;
-  color: var(--muted);
+  color: #EBE4D4;
   text-transform: uppercase;
   transition: color .3s
 }
@@ -6110,4 +6110,42 @@ footer {
   opacity: 1;
   max-width: 140px;
   margin-left: 8px;
+}
+
+/* Floating Navbar Styles */
+.nav-pill-btn {
+  background: none;
+  border: none;
+  color: #EBE4D4;
+  font-family: var(--disp);
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 5px;
+  text-transform: uppercase;
+  transition: color 0.6s ease-in-out, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-pill-btn.light {
+  color: #240605;
+}
+
+.nav-pill-btn:hover {
+  color: var(--hero-coral);
+  transform: translateY(-2px);
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.nav-pill-btn.light:hover {
+  text-shadow: 0 4px 10px rgba(255,255,255,0.5);
+}
+
+.nav-pill-center {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-pill-center:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
 }

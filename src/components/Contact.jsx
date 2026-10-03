@@ -355,7 +355,7 @@ export default function Contact({ onShowToast }) {
                 <path pathLength="1" d="M23 8 c -3 4 3 6 0 10" />
                 <path pathLength="1" d="M33 6 c -3 4 3 6 0 10" />
               </svg>
-              <span>runs on chai &amp; gradient descent. click the cup, it refills.</span>
+              <span style={{ color: '#EBE4D4' }}>runs on chai &amp; gradient descent. click the cup, it refills.</span>
             </p>
           </div>
         </div>
@@ -416,7 +416,7 @@ export default function Contact({ onShowToast }) {
               fontFamily: 'var(--hand)',
               fontSize: '64px',
               fontWeight: 'normal',
-              color: '#e53935',
+              color: '#EBE4D4',
               marginTop: '50px',
               transform: 'rotate(-4deg)',
               letterSpacing: '1px',

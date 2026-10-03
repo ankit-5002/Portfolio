@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 const MENU_LINKS = [
   { href: '#about', num: '01', text: 'about' },
   { href: '/work', path: '/work', num: '02', text: 'work' },
-  { href: '/journey', path: '/journey', num: '03', text: 'journey' },
+  { href: '/about', path: '/about', num: '03', text: 'about' },
   { href: '/atelier', path: '/atelier', num: '04', text: 'atelier' },
   { href: '#quests', num: '05', text: 'side quests' },
   { href: '#contact', num: '06', text: 'say hello' },

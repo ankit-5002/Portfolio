@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import card1Bg from '../assets/card1.png';
 import card2Bg from '../assets/card2.png';
+import project1Img from '../assets/project1.png';
+import project2Img from '../assets/project2.png';
 
 export default function FeaturedProjectsStack() {
   const [progress, setProgress] = useState(0);
@@ -31,7 +33,7 @@ export default function FeaturedProjectsStack() {
       title: "EcoPack AI",
       tags: ["FULL-STACK", "MACHINE LEARNING", "SUSTAINABILITY"],
       desc: "Built at Infosys. A full-stack platform that recommends sustainable packaging, cutting material costs by 22% in simulation.",
-      img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+      img: project2Img,
       p: Math.min(1, progress / 0.26),
       nextP: Math.min(1, Math.max(0, (progress - 0.26) / 0.27)),
       bgImg: card1Bg,
@@ -44,7 +46,7 @@ export default function FeaturedProjectsStack() {
       title: "RAG Engine",
       tags: ["REST API", "VECTOR SEARCH", "AI"],
       desc: "Cited Vector Search REST API. Connects complex document databases into an interactive and reliable question-answering system.",
-      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+      img: project1Img,
       p: Math.min(1, Math.max(0, (progress - 0.26) / 0.27)),
       nextP: Math.min(1, Math.max(0, (progress - 0.53) / 0.27)),
       bgImg: card2Bg,

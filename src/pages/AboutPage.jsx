@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import Journey from '../components/Journey';
+import AboutDetails from '../components/AboutDetails';
 import Footer from '../components/Footer';
 
-export default function JourneyPage({ onNavigate }) {
+export default function AboutPage({ onNavigate }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,7 +15,7 @@ export default function JourneyPage({ onNavigate }) {
         </button>
       </header>
       <main className="subpage-main">
-        <Journey />
+        <AboutDetails />
       </main>
       <Footer />
     </div>

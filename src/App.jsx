@@ -17,7 +17,7 @@ import Footer from './components/Footer';
 import Toast from './components/Toast';
 
 import WorkPage from './pages/WorkPage';
-import JourneyPage from './pages/JourneyPage';
+import AboutPage from './pages/AboutPage';
 import AtelierPage from './pages/AtelierPage';
 
 import './index.css';
@@ -109,8 +109,8 @@ export default function App() {
     if (currentPath === '/work') {
       return <WorkPage onNavigate={navigate} />;
     }
-    if (currentPath === '/journey') {
-      return <JourneyPage onNavigate={navigate} />;
+    if (currentPath === '/about') {
+      return <AboutPage onNavigate={navigate} />;
     }
     if (currentPath === '/atelier') {
       return <AtelierPage onNavigate={navigate} />;
@@ -140,7 +140,7 @@ export default function App() {
       <CustomCursor />
       <div id="progress" ref={progressBarRef}></div>
 
-      <Navbar onOpenMenu={() => setMenuOpen(true)} />
+      <Navbar onOpenMenu={() => setMenuOpen(true)} onNavigate={navigate} />
       <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} onNavigate={navigate} />
 
       {renderContent()}
