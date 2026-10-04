@@ -25,7 +25,7 @@ const experiences = [
       'Implemented the backend using Python, Flask, PostgreSQL, and REST APIs, integrating predictive models for carbon footprint and cost efficiency.',
       'Achieved 97% model accuracy and demonstrated a 22% reduction in simulated material cost.'
     ],
-    image: project1Img,
+    image: picture1Img,
     theme: {
       bg: '#711A1A', text: '#EBE4D4', tagBg: '#EBE4D4', tagText: '#711A1A',
       tagIcon: '#240605', hr: 'rgba(235, 228, 212, 0.3)', btnBg: '#EBE4D4', btnText: '#711A1A', imgOutline: '#EBE4D4'
@@ -33,7 +33,7 @@ const experiences = [
   },
   {
     id: 2,
-    role: 'Software Intern',
+    role: 'Student Intern',
     company: 'Ramkrishna Forgings Limited',
     date: 'JUN.25 - JUL.25',
     description: [
@@ -41,7 +41,7 @@ const experiences = [
       'Performed data preprocessing, augmentation, and model training with TensorFlow, Keras, and OpenCV to improve accuracy.',
       'Successfully classified six defect types with high accuracy and deployed the model using Flask to enhance automated quality control.'
     ],
-    image: project2Img,
+    image: picture1Img,
     theme: {
       bg: '#EBE4D4', text: '#240605', tagBg: '#240605', tagText: '#EBE4D4',
       tagIcon: '#EBE4D4', hr: 'rgba(36, 6, 5, 0.3)', btnBg: '#711A1A', btnText: '#EBE4D4', imgOutline: '#711A1A'

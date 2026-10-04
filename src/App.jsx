@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import BackgroundElements from './components/BackgroundElements';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
+import WorkInProgressBadge from './components/WorkInProgressBadge';
 import Navbar from './components/Navbar';
 import MobileMenu from './components/MobileMenu';
 import Hero from './components/Hero';
@@ -138,6 +139,7 @@ export default function App() {
       <BackgroundElements />
       <Preloader />
       <CustomCursor />
+      <WorkInProgressBadge />
       <div id="progress" ref={progressBarRef}></div>
 
       <Navbar onOpenMenu={() => setMenuOpen(true)} onNavigate={navigate} />
