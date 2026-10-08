@@ -28,7 +28,7 @@ export default function About() {
   const cardAnim = Math.min(1, Math.max(0, (progress - 0.25) / 0.35));
 
   return (
-    <section id="about" ref={aboutRef} style={{ height: '200vh', position: 'relative' }}>
+    <section id="about" ref={aboutRef} style={{ height: '200vh', position: 'relative', backgroundColor: '#240605' }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         
         {/* Animated Title */}

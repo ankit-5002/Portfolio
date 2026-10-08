@@ -61,13 +61,13 @@ export default function Navbar({ onOpenMenu, onNavigate }) {
         position: 'fixed',
         top: '30px',
         left: '50%',
-        transform: `translate(-50%, ${scrolled ? '0' : '-100px'}) scale(${scrolled ? 1 : 0.9})`,
-        opacity: scrolled ? 1 : 0,
+        transform: 'translate(-50%, 0)',
+        opacity: 1,
         transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s',
         zIndex: 100,
         display: 'flex',
         alignItems: 'center',
-        pointerEvents: scrolled ? 'auto' : 'none'
+        pointerEvents: 'auto'
       }}>
         <div style={{
           display: 'flex',

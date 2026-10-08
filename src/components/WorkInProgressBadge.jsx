@@ -56,7 +56,7 @@ export default function WorkInProgressBadge() {
         }}>
           WORK
         </div>
-        
+
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: '6px', marginTop: '4px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '6px' }}>
             {/* Swirl SVG */}
@@ -73,7 +73,7 @@ export default function WorkInProgressBadge() {
               IN
             </span>
           </div>
-          
+
           <span style={{
             fontFamily: "'Yatra One', system-ui, sans-serif",
             fontSize: '2.4rem',
@@ -101,7 +101,7 @@ export default function WorkInProgressBadge() {
           Website under renovation
         </div>
       </div>
-      
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Yatra+One&display=swap');
         @keyframes badgeSwing {
