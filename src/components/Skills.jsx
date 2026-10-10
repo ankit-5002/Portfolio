@@ -13,19 +13,23 @@ import cardImg3 from '../assets/skill_card3.png';
 import project1Img from '../assets/project1.png';
 import project2Img from '../assets/project2.png';
 import picture1Img from '../assets/picture1.png';
+import infosysLogo from '../assets/infosys.jpeg';
+import rkforgeLogo from '../assets/RKFORGE.png';
+import campustechLogo from '../assets/Campustech.jpeg';
 
 const experiences = [
   {
     id: 1,
     role: 'AI Intern',
     company: 'Infosys Springboard',
+    logo: infosysLogo,
     date: 'DEC.25 - FEB.26',
     description: [
       'Designed and developed EcoPackAI, a full-stack machine learning platform for sustainable packaging recommendation and optimization.',
       'Implemented the backend using Python, Flask, PostgreSQL, and REST APIs, integrating predictive models for carbon footprint and cost efficiency.',
       'Achieved 97% model accuracy and demonstrated a 22% reduction in simulated material cost.'
     ],
-    image: picture1Img,
+    image: infosysLogo,
     theme: {
       bg: '#711A1A', text: '#EBE4D4', tagBg: '#EBE4D4', tagText: '#711A1A',
       tagIcon: '#240605', hr: 'rgba(235, 228, 212, 0.3)', btnBg: '#EBE4D4', btnText: '#711A1A', imgOutline: '#EBE4D4'
@@ -35,13 +39,14 @@ const experiences = [
     id: 2,
     role: 'Student Intern',
     company: 'Ramkrishna Forgings Limited',
+    logo: rkforgeLogo,
     date: 'JUN.25 - JUL.25',
     description: [
       'Designed and implemented a deep learning-based system for surface defect detection in hot-rolled steel strips using CNNs with the NEU dataset.',
       'Performed data preprocessing, augmentation, and model training with TensorFlow, Keras, and OpenCV to improve accuracy.',
       'Successfully classified six defect types with high accuracy and deployed the model using Flask to enhance automated quality control.'
     ],
-    image: picture1Img,
+    image: rkforgeLogo,
     theme: {
       bg: '#EBE4D4', text: '#240605', tagBg: '#240605', tagText: '#EBE4D4',
       tagIcon: '#EBE4D4', hr: 'rgba(36, 6, 5, 0.3)', btnBg: '#711A1A', btnText: '#EBE4D4', imgOutline: '#711A1A'
@@ -49,15 +54,16 @@ const experiences = [
   },
   {
     id: 3,
-    role: 'Machine Learning Intern',
+    role: 'ML Intern',
     company: 'TimesPro (Campus Tech.)',
+    logo: campustechLogo,
     date: 'MAY.25 - JUL.25',
     description: [
       'Built an AI Document Validation System and analyzed NLP-based pipelines to extract, clean, and structure text data from PDF and DOCX files.',
       'Applied custom Named Entity Recognition (NER) models and rule-based validations, slashing manual document verification workflows by 70%.',
       'Collaborated on designing API endpoints and integrating lightweight deployment models with microservice frameworks.'
     ],
-    image: picture1Img,
+    image: campustechLogo,
     theme: {
       bg: '#2A0B02', text: '#EBE4D4', tagBg: '#EBE4D4', tagText: '#240605',
       tagIcon: '#711A1A', hr: 'rgba(235, 228, 212, 0.3)', btnBg: '#EBE4D4', btnText: '#711A1A', imgOutline: '#711A1A'
@@ -128,8 +134,9 @@ export default function Skills() {
   // Phase 1: Box expansion (0% to 50%)
   const anim = Math.min(1, progress / 0.50);
 
-  // Phase 2: Work Experience block slides up (30% to 100%)
-  const p1Progress = Math.min(1, Math.max(0, (progress - 0.30) / 0.70));
+  // Phase 2: Work Experience block slides up (30% to 85%)
+  // This leaves 15% of the scroll duration at the end for the user to read the final card before unsticking
+  const p1Progress = Math.min(1, Math.max(0, (progress - 0.30) / 0.55));
 
   // Phase 3: Title fades out as work experience slides in (30% to 60%)
   const titleMove = Math.min(1, Math.max(0, (progress - 0.30) / 0.30));
@@ -516,7 +523,7 @@ export default function Skills() {
               const yOffset = (1 - arriveP) * 100; // Starts 100vh below center
               const stackY = 0; // Don't move up, just get fully covered
               const scale = 1; // Don't shrink
-              const opacity = arriveP > 0 ? Math.max(0, 1 - distance) : 0; // Fades out slowly as the new card stacks over
+              const opacity = 1; // Never fade out; just get physically covered by the next card
 
               return (
                 <div key={exp.id} style={{
@@ -550,12 +557,13 @@ export default function Skills() {
                       width: '100%',
                       height: '100%',
                       backgroundImage: `url(${exp.image})`,
-                      backgroundSize: 'cover',
+                      backgroundSize: 'contain',
+                      backgroundRepeat: 'no-repeat',
                       backgroundPosition: 'center',
                       borderRadius: '16px',
                       border: `8px solid ${exp.theme.bg}`,
                       boxShadow: `0 0 0 1px ${exp.theme.imgOutline}, -10px 10px 20px rgba(0,0,0,0.4)`,
-                      backgroundColor: '#333'
+                      backgroundColor: '#FFFFFF'
                     }} />
                   </div>
 

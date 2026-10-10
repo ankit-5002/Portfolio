@@ -2,8 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import card1Bg from '../assets/card1.png';
 import card2Bg from '../assets/card2.png';
-import project1Img from '../assets/project1.png';
-import project2Img from '../assets/project2.png';
+import project1Img from '../assets/Rag_Project.png';
+import project2Img from '../assets/Ecopack__project.png';
+import project3Img from '../assets/nlp_project.png';
 
 export default function FeaturedProjectsStack() {
   const [progress, setProgress] = useState(0);
@@ -31,8 +32,20 @@ export default function FeaturedProjectsStack() {
     {
       id: 1,
       title: "EcoPack AI",
-      tags: ["FULL-STACK", "MACHINE LEARNING", "SUSTAINABILITY"],
-      desc: "Built at Infosys. A full-stack platform that recommends sustainable packaging, cutting material costs by 22% in simulation.",
+      tags: ["PYTHON", "FLASK", "REACT", "POSTGRESQL", "ML"],
+      desc: "A full-stack ML-driven platform recommending sustainable packaging based on dimensions and category, achieving 97% accuracy.",
+      category: "SUSTAINABLE ENGINEERING",
+      code: "EP-01",
+      subDesc: "Developed predictive models for carbon footprint and cost efficiency; resulting recommendations reduced simulated material cost by 22%.",
+      stats: [
+        { label: "ARCHITECTURE", value: "Full-Stack ML Platform" },
+        { label: "STACK", value: "PostgreSQL • REST APIs" },
+        { label: "MODEL ACCURACY", value: "97% Achievement" },
+        { label: "COST REDUCTION", value: "22% Simulated" }
+      ],
+      caption: "EcoPack AI simulation interface predicting optimal sustainable packaging layouts.",
+      repoLink: "https://github.com/ankit-5002/Eco-Pack_AI",
+      caseStudyLink: "javascript:void(0)",
       img: project2Img,
       p: Math.min(1, progress / 0.26),
       nextP: Math.min(1, Math.max(0, (progress - 0.26) / 0.27)),
@@ -43,9 +56,22 @@ export default function FeaturedProjectsStack() {
     },
     {
       id: 2,
-      title: "RAG Engine",
-      tags: ["REST API", "VECTOR SEARCH", "AI"],
-      desc: "Cited Vector Search REST API. Connects complex document databases into an interactive and reliable question-answering system.",
+      title: "Multimodal RAG\u00A0App.",
+      tags: ["PYTHON", "FASTAPI", "CHROMADB", "LANGCHAIN"],
+      desc: "Multimodal RAG chatbot combining BM25 keyword search with semantic vector search and cross-encoder reranking.",
+      category: "VECTOR INTELLIGENCE",
+      code: "RE-09",
+      subDesc: "Applied prompt engineering, citation enforcement and hallucination checks to keep responses grounded in retrieved sources and improve information relevance.",
+      stats: [
+        { label: "ARCHITECTURE", value: "Hybrid Sparse-Dense" },
+        { label: "STACK", value: "FastAPI • ChromaDB • LangChain" },
+        { label: "EVALUATION", value: "Automated CI/CD Testing" },
+        { label: "RELIABILITY", value: "Citation-backed Answers" }
+      ],
+      caption: "Retrieva developer documentation explorer & verification interface.",
+      repoLink: "https://github.com/ankit-5002/Production-Grade-RAG-System-",
+      caseStudyLink: "javascript:void(0)",
+      demoLink: "https://retrieva-p4db.onrender.com/",
       img: project1Img,
       p: Math.min(1, Math.max(0, (progress - 0.26) / 0.27)),
       nextP: Math.min(1, Math.max(0, (progress - 0.53) / 0.27)),
@@ -56,10 +82,22 @@ export default function FeaturedProjectsStack() {
     },
     {
       id: 3,
-      title: "NLP Resume Parser",
-      tags: ["DATA PIPELINE", "NLP", "AUTOMATION"],
-      desc: "Unstructured Data Pipeline. Automatically extracts, classifies, and standardizes resume data into structured formats.",
-      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      title: "NLP Resume\u00A0Parser",
+      tags: ["PYTHON", "SPACY", "NLTK", "PANDAS"],
+      desc: "NLP data-processing pipeline parsing unstructured resumes to extract key entities like skills and education.",
+      category: "DATA ENGINEERING",
+      code: "NP-04",
+      subDesc: "Engineered rule-based and statistical text-cleaning algorithms to normalize complex documents, reducing downstream errors by 30%.",
+      stats: [
+        { label: "ARCHITECTURE", value: "NLP Pipeline" },
+        { label: "STACK", value: "Python • spaCy • Pandas" },
+        { label: "ACCURACY", value: "85%+ Extraction Accuracy" },
+        { label: "IMPACT", value: "40% Less Manual Effort" }
+      ],
+      caption: "Unstructured data pipeline dashboard for automated resume parsing.",
+      repoLink: "https://github.com/ankit-5002/Automated-Resume-Parser-",
+      caseStudyLink: "javascript:void(0)",
+      img: project3Img,
       p: Math.min(1, Math.max(0, (progress - 0.53) / 0.27)),
       nextP: 0,
       bgImg: card1Bg,
@@ -175,95 +213,82 @@ export default function FeaturedProjectsStack() {
               }}
             >
               
-              {/* Tags overlay */}
-              <div style={{ 
-                position: 'absolute',
-                top: '12%',
-                left: proj.id === 2 ? 'auto' : '10%',
-                right: proj.id === 2 ? '10%' : 'auto',
-                display: 'flex', 
-                flexWrap: 'wrap',
-                gap: '8px', 
-                fontFamily: 'var(--body)', 
-                fontSize: 'clamp(0.6rem, 1vw, 0.75rem)', 
-                color: '#2A1A12', 
-                fontWeight: 600, 
-                letterSpacing: '1px' 
-              }}>
-                {proj.tags.map((tag, idx) => (
-                  <span 
-                    key={idx}
-                    style={{
-                      padding: '4px 12px',
-                      borderRadius: '20px',
-                      border: '1px solid rgba(42, 26, 18, 0.4)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                      backdropFilter: 'blur(2px)'
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              {/* Card Safe Area */}
+              <div style={{ position: 'absolute', top: '13%', bottom: '13%', left: '12%', right: '12%', display: 'flex', flexDirection: 'column' }}>
+                
+                {/* Header Section */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5%', borderBottom: '1px solid rgba(42,26,18,0.15)', marginBottom: '3%' }}>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: '0.55rem', fontWeight: 600, color: '#2A1A12', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#8B5CF6' }}></div>
+                    ARCHIVE NO. 0{proj.id + 3} &nbsp;|&nbsp; CATEGORY: {proj.category}
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    {proj.tags.map((tag, idx) => (
+                      <span key={idx} style={{ padding: '3px 10px', borderRadius: '20px', border: '1px solid rgba(42, 26, 18, 0.4)', backgroundColor: 'transparent', fontFamily: 'var(--mono)', fontSize: '0.55rem', fontWeight: 600, color: '#2A1A12', letterSpacing: '0.5px' }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Title overlay */}
-              <h3 style={{
-                position: 'absolute',
-                bottom: '12%',
-                left: proj.id === 2 ? 'auto' : '12%',
-                right: proj.id === 2 ? '12%' : 'auto',
-                textAlign: proj.id === 2 ? 'right' : 'left',
-                width: '40%',
-                fontFamily: "'Penelope', var(--disp), serif",
-                fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-                color: '#2A1A12',
-                margin: 0,
-                fontWeight: 'normal',
-                lineHeight: 0.9,
-                textTransform: 'uppercase',
-              }}>
-                {proj.title}
-              </h3>
+                {/* Main Content Area */}
+                <div style={{ flex: 1, display: 'flex', gap: '5%', minHeight: 0 }}>
+                  
+                  {/* Left Column (Image) */}
+                  <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', order: proj.id === 2 ? 1 : 2, justifyContent: 'center' }}>
+                    <div style={{ flex: 1, position: 'relative', width: '100%', minHeight: 0, display: 'flex', alignItems: 'center', justifyContent: proj.id === 2 ? 'flex-end' : 'flex-start' }}>
+                      <img src={proj.img} alt={proj.title} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '16px', border: '1px solid rgba(42,26,18,0.2)' }} />
+                    </div>
+                    {proj.caption && (
+                      <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', fontStyle: 'italic', marginTop: '3%', color: 'rgba(42,26,18,0.7)' }}>
+                        {proj.caption}
+                      </div>
+                    )}
+                  </div>
 
-              {/* Project Image overlay */}
-              <div style={{ 
-                position: 'absolute',
-                top: '10%',
-                right: proj.id === 2 ? 'auto' : '12%',
-                left: proj.id === 2 ? '12%' : 'auto',
-                width: '38%',
-                height: '62%',
-                overflow: 'hidden',
-                borderRadius: '4px' // slight rounding if needed
-              }}>
-                <img
-                  src={proj.img}
-                  alt={proj.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    filter: 'contrast(1.1) brightness(0.95)'
-                  }}
-                />
+                  {/* Right Column (Text) */}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', order: proj.id === 2 ? 2 : 1, justifyContent: 'center' }}>
+                    <div style={{ fontFamily: 'var(--mono)', fontSize: '0.55rem', color: '#2A1A12', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '1%' }}>
+                      PROJECT CODE // {proj.code}
+                    </div>
+                    
+                    <h3 style={{ fontFamily: "'Penelope', var(--disp), serif", fontSize: 'clamp(2rem, 3.5vw, 4.5rem)', color: '#2A1A12', margin: 0, fontWeight: 900, lineHeight: 0.9, textTransform: 'uppercase' }}>
+                      {proj.title.split(' ').map((t, idx) => <div key={idx}>{t}</div>)}
+                    </h3>
+                    
+                    <div style={{ width: '40px', height: '2px', backgroundColor: '#2A1A12', margin: '3% 0' }}></div>
+                    
+                    <p style={{ fontFamily: 'var(--body)', fontSize: 'clamp(0.85rem, 1vw, 1rem)', color: '#2A1A12', margin: 0, fontWeight: 500, lineHeight: 1.5 }}>
+                      {proj.desc}
+                    </p>
+                    
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 8px', margin: '3% 0', borderTop: '1px solid rgba(42,26,18,0.15)', borderBottom: '1px solid rgba(42,26,18,0.15)', padding: '3% 0' }}>
+                      {proj.stats.map((stat, idx) => (
+                        <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontFamily: 'var(--mono)', fontSize: '0.55rem' }}>
+                          <span style={{ color: 'rgba(42,26,18,0.6)' }}>{stat.label}</span>
+                          <strong style={{ color: '#2A1A12', fontWeight: 700 }}>{stat.value}</strong>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginTop: '2%' }}>
+                      {[ {l: 'SOURCE CODE', u: proj.repoLink}, {l: 'CASE STUDY', u: proj.caseStudyLink}, {l: 'LIVE DEMO', u: proj.demoLink} ]
+                        .filter(link => link.u)
+                        .map((link, idx, arr) => (
+                          <React.Fragment key={idx}>
+                            <a href={link.u} target={link.u === "javascript:void(0)" ? "_self" : "_blank"} rel="noopener noreferrer" className="feature-link" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--mono)', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: '#2A1A12', textDecoration: 'none', paddingBottom: '3px', cursor: link.u === "javascript:void(0)" ? 'default' : 'pointer' }}>
+                              {link.l} <ArrowUpRight size={15} style={{ transform: 'translateY(-1px)' }}/>
+                            </a>
+                            {idx < arr.length - 1 && (
+                              <span style={{ color: 'rgba(42,26,18,0.4)', fontWeight: 800 }}>|</span>
+                            )}
+                          </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
               </div>
-              
-              {/* Description overlay */}
-              <p style={{
-                position: 'absolute',
-                top: '75%',
-                right: proj.id === 2 ? 'auto' : '12%',
-                left: proj.id === 2 ? '12%' : 'auto',
-                width: '38%',
-                fontFamily: 'var(--body)',
-                color: '#2A1A12',
-                fontSize: 'clamp(0.7rem, 1.2vw, 0.95rem)',
-                lineHeight: 1.5,
-                margin: 0,
-                fontWeight: 500,
-              }}>
-                {proj.desc}
-              </p>
             </div>
           );
         })}

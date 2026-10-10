@@ -58,9 +58,49 @@ export default function App() {
   };
 
   useEffect(() => {
-    // Scroll progress bar
+    const handleGlobalClick = (e) => {
+      const link = e.target.closest('a');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      // If it's a root-relative internal link, intercept it
+      if (href && href.startsWith('/') && link.target !== '_blank') {
+        if (href.endsWith('.pdf')) return; // let browser handle downloads
+
+        e.preventDefault();
+        const [path, hash] = href.split('#');
+        navigate(path || '/');
+
+        if (hash) {
+          setTimeout(() => {
+            const el = document.getElementById(hash);
+            if (el) el.scrollIntoView();
+          }, 150);
+        }
+      }
+    };
+    
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
+
+  useEffect(() => {
+    // Scroll restoration on mount
+    const savedScrollPos = sessionStorage.getItem(`scrollPos_${window.location.pathname}`);
+    if (savedScrollPos) {
+      // Small timeout to allow DOM to render and Preloader to settle
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollPos, 10));
+      }, 150);
+    }
+
+    // Scroll progress bar and scroll saving
     const handleScroll = () => {
       const y = window.scrollY;
+      
+      // Save scroll position
+      sessionStorage.setItem(`scrollPos_${window.location.pathname}`, y.toString());
+
       const h = document.documentElement;
       const maxScroll = h.scrollHeight - window.innerHeight;
       const progress = maxScroll > 0 ? clamp(y / maxScroll, 0, 1) : 0;
@@ -104,7 +144,7 @@ export default function App() {
         });
       }
     };
-  }, []);
+  }, [currentPath]);
 
   const renderContent = () => {
     if (currentPath === '/work') {

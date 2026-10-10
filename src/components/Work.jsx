@@ -37,7 +37,7 @@ export default function Work() {
               <h3>EcoPackAI</h3>
               <span className="p-sub">Full-Stack ML Platform · Dec 2025 — Feb 2026</span>
               <p className="p-desc">
-                Built at Infosys Springboard: a full-stack platform (Flask, PostgreSQL, REST APIs) that recommends sustainable packaging from product dimensions and category. Predictive models estimate carbon footprint and cost efficiency — recommendations cut simulated material cost by 22%, consolidated into an analytics dashboard with modular, scalability-first backend services.
+                Built EcoPackAI, a full-stack ML-driven platform that recommends sustainable packaging based on product dimensions and category, achieving 97% model accuracy. Developed predictive models for carbon footprint and cost efficiency; resulting recommendations reduced simulated material cost by 22%. Used PostgreSQL and REST APIs to support structured application data and backend services, with a focus on reliable data processing and scalable system design. Consolidated model insights into an analytics dashboard so packaging recommendations and their cost and sustainability impact could be reviewed in one place.
               </p>
               <ul className="p-stack">
                 <li>FLASK</li>
@@ -49,7 +49,7 @@ export default function Work() {
               <div className="p-links">
                 <a
                   className="p-link"
-                  href="https://github.com/yourname/ecopackai"
+                  href="https://github.com/ankit-5002/Eco-Pack_AI"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -85,10 +85,10 @@ export default function Work() {
               </div>
             </div>
             <div className="art-info">
-              <h3>RAG Chatbot</h3>
+              <h3>Multimodal RAG Application</h3>
               <span className="p-sub">AI Chatbot Application (RAG System) · 2025</span>
               <p className="p-desc">
-                A production-grade chatbot REST API (Python, FastAPI, ChromaDB) combining BM25 keyword search with semantic vector search and cross-encoder reranking. Citation enforcement and hallucination guards keep answers honest; a 50–200 question evaluation dataset with automated CI/CD testing keeps them that way on every commit.
+                Designed and built a multimodal RAG chatbot using Python and FastAPI, combining BM25 keyword search with semantic vector search and cross-encoder reranking so the LLM receives the most relevant context and returns accurate, citation-backed answers. Applied prompt engineering, citation enforcement and hallucination checks to keep responses grounded in retrieved sources and improve information relevance and reliability through systematic evaluation. Created an evaluation dataset of 30-50 questions and set up automated CI/CD testing to monitor response quality, making the RAG pipeline measurable and repeatable to improve.
               </p>
               <ul className="p-stack">
                 <li>PYTHON</li>
@@ -100,11 +100,19 @@ export default function Work() {
               <div className="p-links">
                 <a
                   className="p-link"
-                  href="https://github.com/yourname/rag-chatbot"
+                  href="https://github.com/ankit-5002/Production-Grade-RAG-System-"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   REPO <ArrowUpRight size={14} />
+                </a>
+                <a
+                  className="p-link"
+                  href="https://retrieva-p4db.onrender.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LIVE DEMO <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
@@ -158,7 +166,7 @@ export default function Work() {
               <h3>Resume Parser</h3>
               <span className="p-sub">Automated Data Processing &amp; Analysis Tool · 2025</span>
               <p className="p-desc">
-                A Python NLP pipeline (spaCy, NLTK, Pandas) that pulls structured information — skills, experience, education — out of unformatted resumes at 85%+ accuracy with 30% fewer processing errors. Then it closes the loop: extracted profiles are matched against listings scraped from multiple job platforms, cutting manual job-search effort by 40%.
+                Built a NLP based data-processing pipeline to parse unstructured resumes and extract key entities such as skills, work experience, and education, achieving over 85% extraction accuracy. Engineered rule-based and statistical text-cleaning algorithms to normalize complex multi-format documents, reducing downstream data-processing errors by 30%, enabling structured data processing for data-driven recommendations and user decision-making. Implemented a skill-matching engine that paired parsed candidate profiles with web-scraped job listings, cutting manual job-search effort by 40% for end users.
               </p>
               <ul className="p-stack">
                 <li>PYTHON</li>
@@ -170,7 +178,7 @@ export default function Work() {
               <div className="p-links">
                 <a
                   className="p-link"
-                  href="https://github.com/yourname/resume-parser"
+                  href="https://github.com/ankit-5002/Automated-Resume-Parser-"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
