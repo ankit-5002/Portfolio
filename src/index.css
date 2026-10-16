@@ -4496,7 +4496,7 @@ footer {
 /* ============ COMPREHENSIVE MOBILE RESPONSIVENESS ============ */
 @media (max-width: 768px) {
   .mobile-header-btn {
-    display: block;
+    display: none !important;
   }
 
   /* Inline Navigation above Notebook Cover */
@@ -6112,42 +6112,263 @@ footer {
   margin-left: 8px;
 }
 
-/* Floating Navbar Styles */
-.nav-pill-btn {
-  background: none;
-  border: none;
-  color: #EBE4D4;
-  font-family: var(--disp);
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
-  padding: 5px;
-  text-transform: uppercase;
-  transition: color 0.6s ease-in-out, transform 0.3s ease, text-shadow 0.3s ease;
+/* ============ SLEEK FLOATING PILL NAVBAR ============ */
+.nav-pill-wrapper {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+  padding: 0 20px;
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  will-change: transform, opacity;
+  transition: transform 0.55s cubic-bezier(0.19, 1, 0.22, 1), 
+              opacity 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              visibility 0.55s;
 }
 
-.nav-pill-btn.light {
+.nav-pill-wrapper.nav-hidden {
+  transform: translateY(calc(-100% - 40px));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.4s ease,
+              visibility 0.5s;
+}
+
+.nav-pill-capsule {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 900px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 20px;
+  padding: 6px 8px 6px 20px;
+  background: rgba(235, 228, 212, 0.94);
+  border: 1px solid rgba(36, 6, 5, 0.28);
+  box-shadow: none;
+  transition: border-color 0.4s ease, transform 0.2s ease;
+}
+
+.nav-pill-capsule:hover {
+  border-color: rgba(36, 6, 5, 0.45);
+}
+
+.nav-pill-capsule .nav-face-icon {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(4500%) hue-rotate(340deg) brightness(85%) contrast(105%);
+}
+
+.nav-pill-capsule .nav-brand-title {
   color: #240605;
 }
 
-.nav-pill-btn:hover {
-  color: var(--hero-coral);
-  transform: translateY(-2px);
-  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+.nav-pill-capsule .nav-text-link {
+  color: #240605;
+  opacity: 0.9;
 }
 
-.nav-pill-btn.light:hover {
-  text-shadow: 0 4px 10px rgba(255,255,255,0.5);
+.nav-pill-capsule .nav-text-link:hover,
+.nav-pill-capsule .nav-text-link.active {
+  color: #000000;
+  opacity: 1;
 }
 
-.nav-pill-center {
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.nav-pill-capsule .nav-talk-pill-btn {
+  background: rgba(36, 6, 5, 0.08);
+  border: 1px solid rgba(36, 6, 5, 0.26);
+  color: #240605;
+  box-shadow: none;
 }
 
-.nav-pill-center:hover {
-  transform: translate(-50%, -50%) scale(1.1) !important;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+.nav-pill-capsule .nav-talk-pill-btn:hover {
+  background: rgba(36, 6, 5, 0.16);
+  border-color: rgba(36, 6, 5, 0.45);
+  color: #000000;
+  box-shadow: none;
+}
+
+.nav-pill-capsule .nav-mobile-hamburger {
+  background: rgba(36, 6, 5, 0.08);
+  border: 1px solid rgba(36, 6, 5, 0.26);
+  color: #240605;
+}
+
+.nav-pill-capsule .nav-mobile-hamburger:hover {
+  background: rgba(36, 6, 5, 0.16);
+  color: #000000;
+}
+
+.nav-brand-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-brand-side:hover {
+  opacity: 0.95;
+  transform: translateY(-0.5px);
+}
+
+.nav-face-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+}
+
+.nav-brand-side:hover .nav-face-icon {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.nav-brand-title {
+  font-family: var(--disp), serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-links-cluster {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.nav-text-link {
+  background: none;
+  border: none;
+  font-family: var(--disp), serif;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  padding: 6px 4px;
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
+  text-transform: capitalize;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-text-link:hover {
+  transform: translateY(-1px);
+}
+
+.nav-talk-pill-btn {
+  border-radius: 12px;
+  font-family: var(--disp), serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 8px 18px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-left: 6px;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-talk-pill-btn:hover {
+  transform: translateY(-1px);
+}
+
+.nav-talk-arrow {
+  transition: transform 0.25s ease;
+}
+
+.nav-talk-pill-btn:hover .nav-talk-arrow {
+  transform: translateY(2px);
+}
+
+.nav-mobile-tray {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-pill-wrapper {
+    top: 14px;
+    padding: 0 12px;
+  }
+
+  .nav-pill-capsule {
+    height: 48px;
+    padding: 4px 6px 4px 14px;
+    border-radius: 16px;
+  }
+
+  .nav-brand-title {
+    font-size: 17px;
+  }
+
+  .nav-face-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-links-cluster {
+    display: none;
+  }
+
+  .nav-mobile-tray {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-talk-pill-btn.mobile-compact {
+    padding: 6px 12px;
+    height: 34px;
+    font-size: 12px;
+    margin-left: 0;
+    border-radius: 10px;
+  }
+
+  .nav-mobile-hamburger {
+    border-radius: 10px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .nav-mobile-hamburger:hover {
+    transform: scale(1.05);
+  }
+
+  .mobile-header-btn {
+    display: none !important;
+  }
 }
 
 /* Feature Link Interactivity */

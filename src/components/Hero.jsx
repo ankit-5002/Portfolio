@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import heroNameImg from '../assets/I’m Ankit Kumar.png';
 
 const CARES_ABOUT = ['design.', 'accessibility.', 'performance.', 'humans.'];
 
@@ -49,18 +48,23 @@ export default function Hero({ onNavigate }) {
     >
       
       {/* Main Typography Centered */}
-      <div style={{ textAlign: 'center', marginTop: '12vh' }}>
-        <img 
-          src={heroNameImg} 
-          alt="I'm Ankit Kumar" 
+      <div style={{ textAlign: 'center', marginTop: '8vh' }}>
+        <h1 
           style={{
-            width: '80vw',
-            maxWidth: '900px',
-            height: 'auto',
-            maxHeight: '50vh',
-            objectFit: 'contain'
-          }} 
-        />
+            fontFamily: '"Instrument Serif", "Instrument Serif Fallback", Georgia, serif',
+            fontWeight: 600,
+            WebkitTextStroke: '0.4px #240605',
+            fontSize: 'clamp(4rem, 11vw, 9.5rem)',
+            lineHeight: 0.95,
+            letterSpacing: '-0.02em',
+            color: '#240605',
+            margin: '0 0 1.25rem 0',
+            userSelect: 'none'
+          }}
+        >
+          <span style={{ fontStyle: 'normal' }}>Ankit</span>{' '}
+          <span style={{ fontStyle: 'italic' }}>Kumar</span>
+        </h1>
         
         <p style={{
           fontFamily: "var(--disp), serif",

@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function WorkInProgressBadge() {
   return (
-    <div style={{
+    <div className="wip-badge-container" style={{
       position: 'fixed',
       top: 0,
-      right: '60px',
-      zIndex: 9999,
+      right: '20px',
+      zIndex: 999,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
