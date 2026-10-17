@@ -13,7 +13,7 @@ export default function WorkPage({ onNavigate }) {
   return (
     <div className="subpage-wrapper">
       <header className="subpage-nav">
-        <button onClick={() => onNavigate('/')} className="subpage-back-btn">
+        <button onClick={() => onNavigate('/')} className="subpage-back-btn" aria-label="Return to portfolio home page">
           ← Back to Home
         </button>
       </header>

@@ -109,11 +109,11 @@ export default function Hero({ onNavigate }) {
         gap: '0.5rem',
         fontFamily: 'var(--body), sans-serif',
         fontSize: '1rem',
-        color: '#888888',
+        color: '#4A2A22',
         animation: 'bounce 2s infinite',
         zIndex: 5
       }}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"></line>
           <polyline points="19 12 12 19 5 12"></polyline>
         </svg>

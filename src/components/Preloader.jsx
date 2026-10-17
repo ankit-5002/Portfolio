@@ -50,8 +50,8 @@ export default function Preloader({ onComplete }) {
 
         {/* Text Area */}
         <div className="pre-text-area">
-          <h1 className="pre-title">The Portfolio</h1>
-          <h2 className="pre-sub">ANKIT KUMAR</h2>
+          <div className="pre-title">The Portfolio</div>
+          <div className="pre-sub">ANKIT KUMAR</div>
         </div>
 
       </div>

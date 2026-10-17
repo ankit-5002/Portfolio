@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import profileFrameImg from '../assets/Profile_Frame.png';
-import card3Img from '../assets/card5.png';
-import headshotImg from '../assets/picture1.png';
-import { MapPin, Download, ArrowUpRight, Info } from 'lucide-react';
+import profileFrameImg from '../assets/Profile_Frame.webp';
+import card3Img from '../assets/card5.webp';
+import headshotImg from '../assets/picture1.webp';
+import { MapPin, Download, ArrowUpRight, Info } from './LucideIcons';
 
 
 export default function About() {
@@ -43,9 +43,9 @@ export default function About() {
           willChange: 'opacity'
         }}>
           <div style={{ position: 'relative', display: 'inline-block', textAlign: 'left' }}>
-            <h1 style={{ fontFamily: "'Penelope', var(--disp), serif", fontSize: 'clamp(4rem, 9vw, 7rem)', lineHeight: 0.85, margin: 0, fontWeight: 'normal', textTransform: 'uppercase', letterSpacing: '2px', color: '#EBE4D4', whiteSpace: 'nowrap' }}>
+            <h2 style={{ fontFamily: "'Penelope', var(--disp), serif", fontSize: 'clamp(4rem, 9vw, 7rem)', lineHeight: 0.85, margin: 0, fontWeight: 'normal', textTransform: 'uppercase', letterSpacing: '2px', color: '#EBE4D4', whiteSpace: 'nowrap' }}>
               ABOUT ME.
-            </h1>
+            </h2>
             <p style={{ position: 'absolute', right: '0', top: '100%', transform: 'translateY(10px)', fontFamily: 'var(--body)', fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)', margin: 0, color: '#EBE4D4', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 500, textAlign: 'left', whiteSpace: 'nowrap' }}>
               FULL-STACK MACHINE LEARNING ENGINEER
             </p>
@@ -141,7 +141,7 @@ export default function About() {
                 marginTop: '15px',
                 flexWrap: 'wrap'
               }}>
-                <a href="/resume.pdf" download="Ankit_Kumar_Resume.pdf" className="more-projects-pill" style={{
+                <a href="/resume.pdf" download="Ankit_Kumar_Resume.pdf" className="more-projects-pill" aria-label="Download Ankit Kumar Resume PDF" style={{
                   position: 'relative',
                   bottom: 'auto',
                   right: 'auto',
@@ -154,10 +154,10 @@ export default function About() {
                 }}>
                   <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '1px', textTransform: 'uppercase' }}>DOWNLOAD RESUME</span>
                   <div className="mp-icon-circle" style={{ backgroundColor: 'transparent', color: '#240605', boxShadow: 'none' }}>
-                    <Download size={14} />
+                    <Download size={14} aria-hidden="true" />
                   </div>
                 </a>
-                <a href="#contact" className="lets-talk-btn" style={{
+                <a href="#contact" className="lets-talk-btn" aria-label="Contact Ankit Kumar - Let's Talk" style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
@@ -173,13 +173,13 @@ export default function About() {
                   letterSpacing: '1px',
                   transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)'
                 }}>
-                  LET'S TALK <ArrowUpRight size={14} className="lets-talk-icon" style={{ transition: 'transform 0.3s ease' }} />
+                  LET'S TALK <ArrowUpRight size={14} aria-hidden="true" className="lets-talk-icon" style={{ transition: 'transform 0.3s ease' }} />
                 </a>
               </div>
 
               {/* Expandable Journey Button */}
-              <a href="/about" className="journey-info-btn">
-                <Info size={16} style={{ flexShrink: 0 }} />
+              <a href="/about" className="journey-info-btn" aria-label="Read full journey and experience story on About page">
+                <Info size={16} aria-hidden="true" style={{ flexShrink: 0 }} />
                 <span className="journey-text">THE FULL STORY</span>
               </a>
             </div>
@@ -201,6 +201,10 @@ export default function About() {
                 <img
                   src={headshotImg}
                   alt="Ankit Kumar Headshot"
+                  width="272"
+                  height="346"
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     position: 'absolute',
                     top: '12%',
@@ -212,7 +216,16 @@ export default function About() {
                   }}
                 />
                 {/* The Transparent Polaroid Frame */}
-                <img src={profileFrameImg} alt="Frame" className="custom-frame-overlay" style={{ position: 'relative', zIndex: 2, width: '100%', height: 'auto', pointerEvents: 'none' }} />
+                <img 
+                  src={profileFrameImg} 
+                  alt="Polaroid frame border" 
+                  width="340" 
+                  height="495" 
+                  loading="lazy" 
+                  decoding="async" 
+                  className="custom-frame-overlay" 
+                  style={{ position: 'relative', zIndex: 2, width: '100%', height: 'auto', pointerEvents: 'none' }} 
+                />
                 <div className="frame-text-overlay" style={{ zIndex: 3, bottom: '8%', color: '#240605' }}>
                   ANKIT KUMAR
                 </div>

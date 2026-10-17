@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from './LucideIcons';
 
 export default function Work() {
   return (

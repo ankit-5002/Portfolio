@@ -1,4 +1,4 @@
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp } from './LucideIcons';
 
 export default function Footer() {
   const handleScrollTop = () => {
@@ -13,8 +13,8 @@ export default function Footer() {
     <footer>
       <div className="wrap foot-in">
         <span>© 2026 Ankit</span>
-        <button id="top-btn" onClick={handleScrollTop}>
-          BACK TO TOP <ArrowUp size={16} />
+        <button id="top-btn" onClick={handleScrollTop} aria-label="Scroll back to top of page">
+          BACK TO TOP <ArrowUp size={16} aria-hidden="true" />
         </button>
       </div>
     </footer>

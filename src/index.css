@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Penelope';
-  src: url('./assets/fonts/Penelope-Regular.woff2') format('woff2'),
-    url('./assets/fonts/Penelope-Regular.woff') format('woff');
+  src: url('/fonts/Penelope-Regular.woff2') format('woff2'),
+       url('/fonts/Penelope-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,8 @@
 
 @font-face {
   font-family: 'Antar';
-  src: url('./assets/fonts/antar.ttf') format('truetype');
+  src: url('/fonts/antar.woff') format('woff'),
+       url('/fonts/antar.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -24,12 +25,12 @@
   --muted: #8A857A;
   --line: #1c1c1c;
   --accent: #F04E23;
-  --accent-ink: #D8401B;
+  --accent-ink: #B33614;
   --paper: #F2E3CF;
   --paper-hi: #F2E3CF;
   --paper-ink: #211D18;
   --paper-soft: #4A453B;
-  --paper-mut: #8A8172;
+  --paper-mut: #5C5549;
   --paper-line: #D9CDB4;
   --rule: rgba(96, 130, 180, .28);
   --disp: 'Fraunces', serif;

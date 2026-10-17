@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { RotateCcw, Dices } from 'lucide-react';
+import { RotateCcw, Dices } from './LucideIcons';
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;

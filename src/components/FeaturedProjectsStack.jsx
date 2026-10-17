@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import card1Bg from '../assets/card1.png';
-import card2Bg from '../assets/card2.png';
-import project1Img from '../assets/Rag_Project.png';
-import project2Img from '../assets/Ecopack__project.png';
-import project3Img from '../assets/nlp_project.png';
+import { ArrowUpRight } from './LucideIcons';
+import card1Bg from '../assets/card1.webp';
+import card2Bg from '../assets/card2.webp';
+import project1Img from '../assets/Rag_Project.webp';
+import project2Img from '../assets/Ecopack__project.webp';
+import project3Img from '../assets/nlp_project.webp';
 
 export default function FeaturedProjectsStack() {
   const [progress, setProgress] = useState(0);
@@ -158,7 +158,7 @@ export default function FeaturedProjectsStack() {
           flexDirection: 'column',
         }}>
           <div style={{ position: 'relative', display: 'inline-block', textAlign: 'center' }}>
-            <h1 style={{
+            <h2 style={{
               fontFamily: "'Penelope', var(--disp), serif",
               fontSize: 'clamp(4rem, 9vw, 7rem)',
               lineHeight: 0.85,
@@ -169,7 +169,7 @@ export default function FeaturedProjectsStack() {
               color: '#EBE4D4'
             }}>
               FEATURED<br />PROJECTS.
-            </h1>
+            </h2>
             <p style={{
               position: 'absolute',
               right: '0',
@@ -237,7 +237,15 @@ export default function FeaturedProjectsStack() {
                   {/* Left Column (Image) */}
                   <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', order: proj.id === 2 ? 1 : 2, justifyContent: 'center' }}>
                     <div style={{ flex: 1, position: 'relative', width: '100%', minHeight: 0, display: 'flex', alignItems: 'center', justifyContent: proj.id === 2 ? 'flex-end' : 'flex-start' }}>
-                      <img src={proj.img} alt={proj.title} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '16px', border: '1px solid rgba(42,26,18,0.2)' }} />
+                      <img 
+                        src={proj.img} 
+                        alt={proj.title} 
+                        width="800" 
+                        height="600" 
+                        loading="lazy" 
+                        decoding="async" 
+                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '16px', border: '1px solid rgba(42,26,18,0.2)' }} 
+                      />
                     </div>
                     {proj.caption && (
                       <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', fontStyle: 'italic', marginTop: '3%', color: 'rgba(42,26,18,0.7)' }}>
@@ -276,8 +284,15 @@ export default function FeaturedProjectsStack() {
                         .filter(link => link.u)
                         .map((link, idx, arr) => (
                           <React.Fragment key={idx}>
-                            <a href={link.u} target={link.u === "javascript:void(0)" ? "_self" : "_blank"} rel="noopener noreferrer" className="feature-link" style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--mono)', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: '#2A1A12', textDecoration: 'none', paddingBottom: '3px', cursor: link.u === "javascript:void(0)" ? 'default' : 'pointer' }}>
-                              {link.l} <ArrowUpRight size={15} style={{ transform: 'translateY(-1px)' }}/>
+                            <a 
+                              href={link.u} 
+                              target={link.u === "javascript:void(0)" ? "_self" : "_blank"} 
+                              rel="noopener noreferrer" 
+                              className="feature-link" 
+                              aria-label={`${link.l} for ${proj.title}`}
+                              style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--mono)', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: '#2A1A12', textDecoration: 'none', paddingBottom: '3px', cursor: link.u === "javascript:void(0)" ? 'default' : 'pointer' }}
+                            >
+                              {link.l} <ArrowUpRight size={15} aria-hidden="true" style={{ transform: 'translateY(-1px)' }}/>
                             </a>
                             {idx < arr.length - 1 && (
                               <span style={{ color: 'rgba(42,26,18,0.4)', fontWeight: 800 }}>|</span>
@@ -297,6 +312,8 @@ export default function FeaturedProjectsStack() {
         <a
           href="/work"
           className="more-projects-pill"
+          aria-label="View all engineering projects and case studies on Work page"
+          title="View all engineering projects and case studies"
           style={{
             position: 'absolute',
             bottom: '80px',
@@ -305,9 +322,9 @@ export default function FeaturedProjectsStack() {
             transition: 'opacity 0.4s ease, transform 0.4s ease',
           }}
         >
-          <span>more projects</span>
+          <span>all projects</span>
           <div className="mp-icon-circle">
-            <ArrowUpRight size={16} />
+            <ArrowUpRight size={16} aria-hidden="true" />
           </div>
         </a>
       </div>

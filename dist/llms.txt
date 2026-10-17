@@ -1,0 +1,24 @@
+# Ankit Kumar — Software Engineer & AI/ML Engineer
+
+> Portfolio and technical profile of Ankit Kumar — B.Tech CSE graduate and AI/ML engineer. Builds production-grade RAG systems, NLP pipelines, and interactive full-stack ML applications with rigorous evaluations.
+
+## Overview
+- Location: India
+- Primary Expertise: AI/ML Engineering, NLP, Retrieval-Augmented Generation (RAG), Full-stack Web Development
+- Tech Stack: Python, PyTorch, LangChain, FastAPI, React, JavaScript, Docker, GCP
+
+## Navigation
+- [Home](https://ankit.antideploy.com/): Landing page featuring core engineering philosophy, selected projects, and skill matrix.
+- [Work](https://ankit.antideploy.com/work): Deep-dive case studies of production engineering systems and exploratory side quests.
+- [About](https://ankit.antideploy.com/about): Career trajectory, engineering mindset, internships, and technical background.
+- [Atelier](https://ankit.antideploy.com/atelier): Interactive playground, ML experiments, and UI prototypes.
+
+## Featured Projects
+- [EcoPack AI](https://ankit.antideploy.com/work): AI-driven sustainable packaging recommendation and carbon footprint reduction engine.
+- [NLP Resume Parser](https://ankit.antideploy.com/work): High-throughput structured entity extraction pipeline for candidate profiling.
+- [Multimodal RAG App](https://ankit.antideploy.com/work): Hybrid vector retrieval system combining vision and dense text embeddings for cross-modal question answering.
+
+## Contact & Links
+- [GitHub](https://github.com/ankit-5002): Open source repositories, experiments, and code samples.
+- [LinkedIn](https://linkedin.com/): Professional work experience and connections.
+- [Email](mailto:kr.ankit5002@gmail.com): Direct inquiries for 2026 grad roles, full-time engineering positions, and collaboration.

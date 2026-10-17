@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Copy, Globe, Volume2, VolumeX, Music } from 'lucide-react';
+import { Copy, Globe, Volume2, VolumeX, Music } from './LucideIcons';
 
 const CHARS = '#/\\{}[]=+*_%?!01';
 const EMAIL = 'kr.ankit5002@gmail.com';
@@ -185,9 +185,9 @@ export default function Contact({ onShowToast }) {
                           }}
                           style={{ cursor: 'pointer', userSelect: 'none' }}
                         >
-                          <span className="lf-box">
+                          <span className="lf-box" aria-hidden="true">
                             {checkedItems[idx] && (
-                              <svg viewBox="0 0 24 24">
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path pathLength="1" d="M4 12.5 l5 5.5 L20 6" />
                               </svg>
                             )}
@@ -196,7 +196,7 @@ export default function Contact({ onShowToast }) {
                         </li>
                       ))}
                     </ul>
-                    <a className="btn-hand btn-hand--paper mag" href={`mailto:${EMAIL}`}>
+                    <a className="btn-hand btn-hand--paper mag" href={`mailto:${EMAIL}`} aria-label="Send email to Ankit Kumar">
                       let's chat!
                     </a>
                     <p className="lf-foot">CHECKED = YES · UNCHECKED = PLEASE NO</p>
@@ -250,13 +250,17 @@ export default function Contact({ onShowToast }) {
                   }} />
                   <input
                     type="text"
+                    name="name"
+                    aria-label="Your Name"
                     className="lf-input"
                     value={customName}
                     onChange={(e) => setCustomName(e.target.value)}
                     placeholder="Name"
                   />
                   <input
-                    type="text"
+                    type="email"
+                    name="email"
+                    aria-label="Your Email Address"
                     className="lf-input"
                     value={customEmail}
                     onChange={(e) => setCustomEmail(e.target.value)}
@@ -266,6 +270,8 @@ export default function Contact({ onShowToast }) {
                     data-form-type="other"
                   />
                   <textarea
+                    name="message"
+                    aria-label="Your Message"
                     className="lf-input"
                     style={{ minHeight: '96px', resize: 'none' }}
                     value={customMsg}

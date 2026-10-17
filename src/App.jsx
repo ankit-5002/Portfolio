@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import BackgroundElements from './components/BackgroundElements';
 import Preloader from './components/Preloader';
 import WorkInProgressBadge from './components/WorkInProgressBadge';
@@ -13,9 +13,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
 
-import WorkPage from './pages/WorkPage';
-import AboutPage from './pages/AboutPage';
-import AtelierPage from './pages/AtelierPage';
+const WorkPage = lazy(() => import('./pages/WorkPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const AtelierPage = lazy(() => import('./pages/AtelierPage'));
 
 import './index.css';
 
@@ -177,7 +177,9 @@ export default function App() {
 
       <Navbar onNavigate={navigate} />
 
-      {renderContent()}
+      <Suspense fallback={null}>
+        {renderContent()}
+      </Suspense>
 
       <Toast message={toastMsg} visible={toastVisible} />
     </>

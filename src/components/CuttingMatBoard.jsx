@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import paperCutImg from '../assets/papercut.png';
-import board1Img from '../assets/board1.jpg';
-import board2Img from '../assets/board2.png';
-import board4Img from '../assets/board4.png';
-import board5Img from '../assets/board5.jpg';
-import board6Img from '../assets/board6.jpg';
-import board7Img from '../assets/board7.png';
+import { ArrowUpRight } from './LucideIcons';
+import paperCutImg from '../assets/papercut.webp';
+import board1Img from '../assets/board1.webp';
+import board2Img from '../assets/board2.webp';
+import board4Img from '../assets/board4.webp';
+import board5Img from '../assets/board5.webp';
+import board6Img from '../assets/board6.webp';
+import board7Img from '../assets/board7.webp';
 const SwingingChar = ({ char, twoStrings }) => {
   const [rot, setRot] = React.useState(0);
 
@@ -250,8 +250,8 @@ export default function CuttingMatBoard() {
 
             {/* Top Left Papercut Heading */}
             <div className="mat-heading-papercut">
-              <img src={paperCutImg} alt="Papercut" className="papercut-img" />
-              <h2 className="papercut-text">Moments</h2>
+              <img src={paperCutImg} alt="Decorative torn paper banner for Moments heading" width="400" height="142" loading="lazy" decoding="async" className="papercut-img" />
+              <div className="papercut-text">Moments</div>
             </div>
 
             {/* Secondary interior stroke */}
@@ -360,7 +360,10 @@ export default function CuttingMatBoard() {
             >
               <img 
                 src={board1Img} 
-                alt="Accolade 1" 
+                alt="Hackathon certificate and team accolade" 
+                width="300"
+                height="225"
+                decoding="async"
                 className="board-img" 
                 loading="lazy"
                 draggable={false}
@@ -376,7 +379,10 @@ export default function CuttingMatBoard() {
             >
               <img 
                 src={board2Img} 
-                alt="Accolade 2" 
+                alt="Technical achievement and coding accolade" 
+                width="300"
+                height="225"
+                decoding="async"
                 className="board-img" 
                 loading="lazy"
                 draggable={false}
@@ -392,7 +398,10 @@ export default function CuttingMatBoard() {
             >
               <img 
                 src={board7Img} 
-                alt="Accolade 4" 
+                alt="Engineering hackathon moment" 
+                width="300"
+                height="225"
+                decoding="async"
                 className="board-img" 
                 loading="lazy"
                 draggable={false}
@@ -408,7 +417,10 @@ export default function CuttingMatBoard() {
             >
               <img 
                 src={board5Img} 
-                alt="Accolade 7" 
+                alt="Competition award and event participation" 
+                width="300"
+                height="225"
+                decoding="async"
                 className="board-img" 
                 loading="lazy"
                 draggable={false}
@@ -424,7 +436,10 @@ export default function CuttingMatBoard() {
             >
               <img 
                 src={board4Img} 
-                alt="Accolade 5" 
+                alt="Project recognition award" 
+                width="300"
+                height="225"
+                decoding="async"
                 className="board-img" 
                 loading="lazy"
                 draggable={false}
@@ -440,7 +455,10 @@ export default function CuttingMatBoard() {
             >
               <img 
                 src={board6Img} 
-                alt="Accolade 5" 
+                alt="Team hackathon celebration and demo" 
+                width="300"
+                height="225"
+                decoding="async"
                 className="board-img" 
                 loading="lazy"
                 draggable={false}
@@ -448,10 +466,15 @@ export default function CuttingMatBoard() {
             </DraggableCard>
 
             {/* More Info Pill */}
-            <a href="/work#quests" className="more-projects-pill">
-              <span>more info</span>
+            <a 
+              href="/work#quests" 
+              className="more-projects-pill"
+              aria-label="View more side quests and engineering highlights on Work page"
+              title="View more side quests and engineering highlights"
+            >
+              <span>explore quests</span>
               <div className="mp-icon-circle">
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} aria-hidden="true" />
               </div>
             </a>
 

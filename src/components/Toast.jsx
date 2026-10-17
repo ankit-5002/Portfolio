@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react';
+import { Check } from './LucideIcons';
 
 export default function Toast({ message, visible }) {
   return (

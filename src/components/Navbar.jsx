@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Download } from 'lucide-react';
+import { Download } from './LucideIcons';
 
 export default function Navbar({ onNavigate }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -137,7 +137,7 @@ export default function Navbar({ onNavigate }) {
           aria-label="Download Resume"
         >
           <span>Resume</span>
-          <Download size={14} className="nav-resume-icon" />
+          <Download size={14} aria-hidden="true" className="nav-resume-icon" />
         </a>
       </div>
     </header>

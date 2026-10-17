@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from './LucideIcons';
 import {
   SiPython, SiReact, SiJavascript, SiHtml5, SiCss,
   SiPandas, SiNumpy, SiScikitlearn, SiPytorch, SiTensorflow,
   SiSpacy, SiFastapi, SiFlask, SiPostgresql, SiMysql, SiMongodb,
-  SiGooglecloud, SiDocker, SiGit, SiGithub, SiN8N
-} from 'react-icons/si';
-import { FaJava, FaDatabase, FaProjectDiagram, FaRobot, FaServer, FaSync, FaCode, FaBookOpen, FaRegCalendarAlt } from 'react-icons/fa';
-import cardImg1 from '../assets/skill_card1.png';
-import cardImg2 from '../assets/skill_card2.png';
-import cardImg3 from '../assets/skill_card3.png';
-import project1Img from '../assets/project1.png';
-import project2Img from '../assets/project2.png';
-import picture1Img from '../assets/picture1.png';
+  SiGooglecloud, SiDocker, SiGit, SiGithub, SiN8N,
+  FaJava, FaDatabase, FaProjectDiagram, FaRobot, FaServer, FaSync, FaCode, FaBookOpen, FaRegCalendarAlt
+} from './SkillIcons';
+import cardImg1 from '../assets/skill_card1.webp';
+import cardImg2 from '../assets/skill_card2.webp';
+import cardImg3 from '../assets/skill_card3.webp';
+import project1Img from '../assets/project1.webp';
+import project2Img from '../assets/project2.webp';
+import picture1Img from '../assets/picture1.webp';
 import infosysLogo from '../assets/infosys.jpeg';
 import rkforgeLogo from '../assets/RKFORGE.png';
 import campustechLogo from '../assets/Campustech.jpeg';
@@ -72,37 +72,37 @@ const experiences = [
 ];
 
 const iconMap = {
-  'Python': <SiPython size={14} />,
-  'Java': <FaJava size={14} />,
-  'SQL': <FaDatabase size={14} />,
-  'Data Structures & Algorithms (DSA)': <FaCode size={14} />,
-  'Pandas': <SiPandas size={14} />,
-  'NumPy': <SiNumpy size={14} />,
-  'Scikit-learn': <SiScikitlearn size={14} />,
-  'XGBoost': <FaProjectDiagram size={14} />,
-  'PyTorch': <SiPytorch size={14} />,
-  'TensorFlow': <SiTensorflow size={14} />,
-  'spaCy': <SiSpacy size={14} />,
-  'NLTK': <FaBookOpen size={14} />,
-  'RAG': <FaProjectDiagram size={14} />,
-  'ChromaDB': <FaDatabase size={14} />,
-  'LLMs': <FaRobot size={14} />,
-  'React': <SiReact size={14} />,
-  'JavaScript': <SiJavascript size={14} />,
-  'HTML': <SiHtml5 size={14} />,
-  'CSS': <SiCss size={14} />,
-  'FastAPI': <SiFastapi size={14} />,
-  'Flask': <SiFlask size={14} />,
-  'REST APIs': <FaServer size={14} />,
-  'PostgreSQL': <SiPostgresql size={14} />,
-  'MySQL': <SiMysql size={14} />,
-  'MongoDB': <SiMongodb size={14} />,
-  'GCP': <SiGooglecloud size={14} />,
-  'Docker': <SiDocker size={14} />,
-  'Git': <SiGit size={14} />,
-  'GitHub': <SiGithub size={14} />,
-  'CI/CD': <FaSync size={14} />,
-  'n8n': <SiN8N size={14} />
+  'Python': <SiPython size={14} aria-hidden="true" />,
+  'Java': <FaJava size={14} aria-hidden="true" />,
+  'SQL': <FaDatabase size={14} aria-hidden="true" />,
+  'Data Structures & Algorithms (DSA)': <FaCode size={14} aria-hidden="true" />,
+  'Pandas': <SiPandas size={14} aria-hidden="true" />,
+  'NumPy': <SiNumpy size={14} aria-hidden="true" />,
+  'Scikit-learn': <SiScikitlearn size={14} aria-hidden="true" />,
+  'XGBoost': <FaProjectDiagram size={14} aria-hidden="true" />,
+  'PyTorch': <SiPytorch size={14} aria-hidden="true" />,
+  'TensorFlow': <SiTensorflow size={14} aria-hidden="true" />,
+  'spaCy': <SiSpacy size={14} aria-hidden="true" />,
+  'NLTK': <FaBookOpen size={14} aria-hidden="true" />,
+  'RAG': <FaProjectDiagram size={14} aria-hidden="true" />,
+  'ChromaDB': <FaDatabase size={14} aria-hidden="true" />,
+  'LLMs': <FaRobot size={14} aria-hidden="true" />,
+  'React': <SiReact size={14} aria-hidden="true" />,
+  'JavaScript': <SiJavascript size={14} aria-hidden="true" />,
+  'HTML': <SiHtml5 size={14} aria-hidden="true" />,
+  'CSS': <SiCss size={14} aria-hidden="true" />,
+  'FastAPI': <SiFastapi size={14} aria-hidden="true" />,
+  'Flask': <SiFlask size={14} aria-hidden="true" />,
+  'REST APIs': <FaServer size={14} aria-hidden="true" />,
+  'PostgreSQL': <SiPostgresql size={14} aria-hidden="true" />,
+  'MySQL': <SiMysql size={14} aria-hidden="true" />,
+  'MongoDB': <SiMongodb size={14} aria-hidden="true" />,
+  'GCP': <SiGooglecloud size={14} aria-hidden="true" />,
+  'Docker': <SiDocker size={14} aria-hidden="true" />,
+  'Git': <SiGit size={14} aria-hidden="true" />,
+  'GitHub': <SiGithub size={14} aria-hidden="true" />,
+  'CI/CD': <FaSync size={14} aria-hidden="true" />,
+  'n8n': <SiN8N size={14} aria-hidden="true" />
 };
 
 export default function Skills() {
@@ -409,7 +409,7 @@ export default function Skills() {
                     fontWeight: 500,
                     letterSpacing: '0.5px'
                   }}>
-                    <span style={{ display: 'flex', alignItems: 'center', opacity: 0.8 }}>
+                    <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', opacity: 0.8 }}>
                       {iconMap[item.name]}
                     </span>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -464,7 +464,7 @@ export default function Skills() {
             }}
           >
             <div style={{ position: 'relative', display: 'inline-block', textAlign: 'center' }}>
-              <h1 style={{
+              <h2 style={{
                 fontFamily: "'Penelope', var(--disp), serif",
                 fontSize: 'clamp(4rem, 9vw, 7rem)',
                 lineHeight: 0.85,
@@ -475,7 +475,7 @@ export default function Skills() {
                 color: '#240605'
               }}>
                 WORK<br />EXPERIENCE.
-              </h1>
+              </h2>
               <p style={{
                 position: 'absolute',
                 right: '0',
@@ -587,13 +587,13 @@ export default function Skills() {
                     border: `1px solid ${exp.theme.imgOutline}`,
                     zIndex: 10
                   }}>
-                    <FaRegCalendarAlt size={14} color={exp.theme.tagIcon} />
+                    <FaRegCalendarAlt size={14} aria-hidden="true" color={exp.theme.tagIcon} />
                     <span style={{ letterSpacing: '1px' }}>{exp.date}</span>
                   </div>
 
                   {/* Right Content Section */}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', marginTop: '16px' }}>
-                    <h2 style={{
+                    <h3 style={{
                       fontFamily: "'Penelope', var(--disp), serif",
                       margin: '0',
                       fontSize: '3.2rem',
@@ -604,7 +604,7 @@ export default function Skills() {
                       lineHeight: 1.1
                     }}>
                       {exp.role}
-                    </h2>
+                    </h3>
                     <div style={{
                       fontFamily: 'var(--disp)',
                       fontSize: '12px',
