@@ -43,27 +43,26 @@ export default function Hero({ onNavigate }) {
         backgroundColor: '#EBE4D4', // Theme cream background
         color: '#240605',
         position: 'relative',
-        padding: '0 2rem'
+        padding: '0 2rem',
+        overflow: 'hidden'
       }}
     >
-      
       {/* Main Typography Centered */}
-      <div style={{ textAlign: 'center', marginTop: '8vh' }}>
+      <div style={{ textAlign: 'center', position: 'relative', zIndex: 5 }}>
         <h1 
           style={{
-            fontFamily: '"Instrument Serif", "Instrument Serif Fallback", Georgia, serif',
-            fontWeight: 600,
-            WebkitTextStroke: '0.4px #240605',
-            fontSize: 'clamp(4rem, 11vw, 9.5rem)',
-            lineHeight: 0.95,
-            letterSpacing: '-0.02em',
+            fontFamily: "'Antar', sans-serif",
+            fontWeight: 'normal',
+            fontSize: 'clamp(2.4rem, 8.5vw, 7.5rem)',
+            lineHeight: 1.05,
+            letterSpacing: '0.06em',
             color: '#240605',
             margin: '0 0 1.25rem 0',
             userSelect: 'none'
           }}
         >
-          <span style={{ fontStyle: 'normal' }}>Ankit</span>{' '}
-          <span style={{ fontStyle: 'italic' }}>Kumar</span>
+          <span style={{ display: 'block' }}>I'm</span>
+          <span style={{ display: 'block', textTransform: 'uppercase' }}>ANKIT KUMAR</span>
         </h1>
         
         <p style={{
@@ -111,7 +110,8 @@ export default function Hero({ onNavigate }) {
         fontFamily: 'var(--body), sans-serif',
         fontSize: '1rem',
         color: '#888888',
-        animation: 'bounce 2s infinite'
+        animation: 'bounce 2s infinite',
+        zIndex: 5
       }}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"></line>

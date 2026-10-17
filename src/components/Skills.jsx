@@ -65,8 +65,8 @@ const experiences = [
     ],
     image: campustechLogo,
     theme: {
-      bg: '#2A0B02', text: '#EBE4D4', tagBg: '#EBE4D4', tagText: '#240605',
-      tagIcon: '#711A1A', hr: 'rgba(235, 228, 212, 0.3)', btnBg: '#EBE4D4', btnText: '#711A1A', imgOutline: '#711A1A'
+      bg: '#711A1A', text: '#EBE4D4', tagBg: '#EBE4D4', tagText: '#711A1A',
+      tagIcon: '#240605', hr: 'rgba(235, 228, 212, 0.3)', btnBg: '#EBE4D4', btnText: '#711A1A', imgOutline: '#EBE4D4'
     }
   }
 ];

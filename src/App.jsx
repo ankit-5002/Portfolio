@@ -1,17 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import BackgroundElements from './components/BackgroundElements';
 import Preloader from './components/Preloader';
-import CustomCursor from './components/CustomCursor';
 import WorkInProgressBadge from './components/WorkInProgressBadge';
 import Navbar from './components/Navbar';
-import MobileMenu from './components/MobileMenu';
 import Hero from './components/Hero';
 import About from './components/About';
-import ProjectsShowcase from './components/ProjectsShowcase';
 import Skills from './components/Skills';
 import CuttingMatBoard from './components/CuttingMatBoard';
 import FeaturedProjectsStack from './components/FeaturedProjectsStack';
-
 
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -23,12 +19,10 @@ import AtelierPage from './pages/AtelierPage';
 
 import './index.css';
 
-
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [toastMsg, setToastMsg] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
   const toastTimerRef = useRef(null);
@@ -79,7 +73,7 @@ export default function App() {
         }
       }
     };
-    
+
     document.addEventListener('click', handleGlobalClick);
     return () => document.removeEventListener('click', handleGlobalClick);
   }, []);
@@ -97,7 +91,7 @@ export default function App() {
     // Scroll progress bar and scroll saving
     const handleScroll = () => {
       const y = window.scrollY;
-      
+
       // Save scroll position
       sessionStorage.setItem(`scrollPos_${window.location.pathname}`, y.toString());
 
@@ -178,12 +172,10 @@ export default function App() {
     <>
       <BackgroundElements />
       <Preloader />
-      <CustomCursor />
-      <WorkInProgressBadge />
+      {currentPath !== '/' && currentPath !== '' && <WorkInProgressBadge />}
       <div id="progress" ref={progressBarRef}></div>
 
-      <Navbar onOpenMenu={() => setMenuOpen(true)} onNavigate={navigate} />
-      <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} onNavigate={navigate} />
+      <Navbar onNavigate={navigate} />
 
       {renderContent()}
 

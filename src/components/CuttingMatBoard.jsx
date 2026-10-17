@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import paperCutImg from '../assets/papercut.png';
-import board1Img from '../assets/project1.png';
-import board2Img from '../assets/project2.png';
+import board1Img from '../assets/board1.jpg';
+import board2Img from '../assets/board2.png';
+import board4Img from '../assets/board4.png';
+import board5Img from '../assets/board5.jpg';
+import board6Img from '../assets/board6.jpg';
+import board7Img from '../assets/board7.png';
 const SwingingChar = ({ char, twoStrings }) => {
   const [rot, setRot] = React.useState(0);
 
@@ -247,7 +251,7 @@ export default function CuttingMatBoard() {
             {/* Top Left Papercut Heading */}
             <div className="mat-heading-papercut">
               <img src={paperCutImg} alt="Papercut" className="papercut-img" />
-              <h2 className="papercut-text">Wall of Accolades</h2>
+              <h2 className="papercut-text">Moments</h2>
             </div>
 
             {/* Secondary interior stroke */}
@@ -347,67 +351,100 @@ export default function CuttingMatBoard() {
               </div>
             </div>
 
-            {/* Side Quest 1: Laptop */}
+            {/* Accolade 1 */}
             <DraggableCard
-              className="mat-card mat-card--board1"
+              className="mat-card mat-card-accolade mat-card--board1"
               defaultZ={10}
+              isFocused={focusedProject === 'board1'}
+              onFocus={() => setFocusedProject(focusedProject === 'board1' ? null : 'board1')}
             >
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="Laptop" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board1</div>
+              <img 
+                src={board1Img} 
+                alt="Accolade 1" 
+                className="board-img" 
+                loading="lazy"
+                draggable={false}
+              />
             </DraggableCard>
 
-            {/* Side Quest 2: Office */}
+            {/* Accolade 2 (New Frame) */}
             <DraggableCard
-              className="mat-card mat-card--board2"
-              defaultZ={10}
-            >
-              <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80" alt="Office" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board2</div>
-            </DraggableCard>
-
-            {/* Side Quest 3: People */}
-            <DraggableCard
-              className="mat-card mat-card--board3"
+              className="mat-card mat-card-accolade mat-card--board2"
               defaultZ={11}
+              isFocused={focusedProject === 'board2'}
+              onFocus={() => setFocusedProject(focusedProject === 'board2' ? null : 'board2')}
             >
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="People" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board3</div>
+              <img 
+                src={board2Img} 
+                alt="Accolade 2" 
+                className="board-img" 
+                loading="lazy"
+                draggable={false}
+              />
             </DraggableCard>
 
-            {/* Side Quest 5: Matrix */}
+            {/* Accolade 4 (now showing board7) */}
             <DraggableCard
-              className="mat-card mat-card--board5"
-              defaultZ={10}
-            >
-              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80" alt="Matrix" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board5</div>
-            </DraggableCard>
-
-            {/* Side Quest 4: CPU */}
-            <DraggableCard
-              className="mat-card mat-card--board4"
-              defaultZ={11}
-            >
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="CPU" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board4</div>
-            </DraggableCard>
-
-            {/* Side Quest 7: Notebook */}
-            <DraggableCard
-              className="mat-card mat-card--board7"
-              defaultZ={10}
-            >
-              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80" alt="Notebook" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board7</div>
-            </DraggableCard>
-
-            {/* Side Quest 6: Circuit */}
-            <DraggableCard
-              className="mat-card mat-card--board6"
+              className="mat-card mat-card-accolade mat-card--board4"
               defaultZ={12}
+              isFocused={focusedProject === 'board4'}
+              onFocus={() => setFocusedProject(focusedProject === 'board4' ? null : 'board4')}
             >
-              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" alt="Circuit" className="board-img" style={{ border: '6px solid white', borderRadius: '10px', boxSizing: 'border-box' }} />
-              <div style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '4px 8px', fontSize: '12px', borderRadius: '4px', pointerEvents: 'none' }}>board6</div>
+              <img 
+                src={board7Img} 
+                alt="Accolade 4" 
+                className="board-img" 
+                loading="lazy"
+                draggable={false}
+              />
+            </DraggableCard>
+
+            {/* Accolade 7 (now showing board5) */}
+            <DraggableCard
+              className="mat-card mat-card-accolade mat-card--board7"
+              defaultZ={10}
+              isFocused={focusedProject === 'board7'}
+              onFocus={() => setFocusedProject(focusedProject === 'board7' ? null : 'board7')}
+            >
+              <img 
+                src={board5Img} 
+                alt="Accolade 7" 
+                className="board-img" 
+                loading="lazy"
+                draggable={false}
+              />
+            </DraggableCard>
+
+            {/* Accolade 5 (now showing board4) */}
+            <DraggableCard
+              className="mat-card mat-card-accolade mat-card--board5"
+              defaultZ={12}
+              isFocused={focusedProject === 'board5'}
+              onFocus={() => setFocusedProject(focusedProject === 'board5' ? null : 'board5')}
+            >
+              <img 
+                src={board4Img} 
+                alt="Accolade 5" 
+                className="board-img" 
+                loading="lazy"
+                draggable={false}
+              />
+            </DraggableCard>
+
+            {/* Accolade 6 */}
+            <DraggableCard
+              className="mat-card mat-card-accolade mat-card--board6"
+              defaultZ={13}
+              isFocused={focusedProject === 'board6'}
+              onFocus={() => setFocusedProject(focusedProject === 'board6' ? null : 'board6')}
+            >
+              <img 
+                src={board6Img} 
+                alt="Accolade 5" 
+                className="board-img" 
+                loading="lazy"
+                draggable={false}
+              />
             </DraggableCard>
 
             {/* More Info Pill */}

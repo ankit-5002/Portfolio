@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import { Download, Menu } from 'lucide-react';
-import faceIcon from '../assets/face_icon.png';
+import { useState, useEffect } from 'react';
+import { Download } from 'lucide-react';
 
-export default function Navbar({ onOpenMenu, onNavigate }) {
+export default function Navbar({ onNavigate }) {
   const [isVisible, setIsVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
-  const lastScrollY = useRef(0);
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
 
   useEffect(() => {
@@ -79,80 +77,69 @@ export default function Navbar({ onOpenMenu, onNavigate }) {
 
   return (
     <header className={`nav-pill-wrapper ${!isVisible ? 'nav-hidden' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
-      <nav className="nav-pill-capsule" aria-label="Main navigation">
-        {/* Left Side: Face Logo + Brand Name */}
-        <div 
-          className="nav-brand-side"
-          onClick={handleBrandClick}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && handleBrandClick()}
-          title="Ankit Kumar — Home"
+      <div className="nav-island-container">
+        {/* Main Glassmorphic Capsule */}
+        <nav className="nav-vantara-capsule" aria-label="Main navigation">
+          {/* Left Nav Options: Work, About */}
+          <div className="nav-side-links nav-side-left">
+            <button 
+              className={`nav-vantara-link ${currentPath === '/work' ? 'active' : ''}`}
+              onClick={() => onNavigate && onNavigate('/work')}
+            >
+              Work
+            </button>
+            <button 
+              className={`nav-vantara-link ${currentPath === '/about' ? 'active' : ''}`}
+              onClick={() => onNavigate && onNavigate('/about')}
+            >
+              About
+            </button>
+          </div>
+
+          {/* Center Brand: ANKIT. with subtext Portfolio */}
+          <div 
+            className="nav-vantara-brand" 
+            onClick={handleBrandClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleBrandClick()}
+            title="Home"
+          >
+            <div className="nav-brand-main">
+              <span className="nav-brand-text">ANKIT</span>
+              <span className="nav-brand-dot">.</span>
+            </div>
+            <div className="nav-brand-sub">Portfolio</div>
+          </div>
+
+          {/* Right Nav Options: Atelier, Connect */}
+          <div className="nav-side-links nav-side-right">
+            <button 
+              className={`nav-vantara-link ${currentPath === '/atelier' ? 'active' : ''}`}
+              onClick={() => onNavigate && onNavigate('/atelier')}
+            >
+              Atelier
+            </button>
+            <button 
+              className="nav-vantara-link"
+              onClick={handleConnectClick}
+            >
+              Connect
+            </button>
+          </div>
+        </nav>
+
+        {/* Separate Resume Pill outside the navbar */}
+        <a 
+          href="/resume.pdf"
+          download="Ankit_Kumar_Resume.pdf"
+          className="nav-resume-separate-pill"
+          aria-label="Download Resume"
         >
-          <img src={faceIcon} alt="Ankit Logo" className="nav-face-icon" />
-          <span className="nav-brand-title">Ankit Kumar</span>
-        </div>
-
-        {/* Right Side: Navigation Links & Resume Action Button */}
-        <div className="nav-links-cluster">
-          <button 
-            className={`nav-text-link ${currentPath === '/work' ? 'active' : ''}`}
-            onClick={() => onNavigate && onNavigate('/work')}
-          >
-            Work
-          </button>
-          <button 
-            className={`nav-text-link ${currentPath === '/about' ? 'active' : ''}`}
-            onClick={() => onNavigate && onNavigate('/about')}
-          >
-            About
-          </button>
-          <button 
-            className={`nav-text-link ${currentPath === '/atelier' ? 'active' : ''}`}
-            onClick={() => onNavigate && onNavigate('/atelier')}
-          >
-            Atelier
-          </button>
-          <button 
-            className="nav-text-link"
-            onClick={handleConnectClick}
-          >
-            Connect
-          </button>
-
-          <a 
-            href="/resume.pdf"
-            download="Ankit_Kumar_Resume.pdf"
-            className="nav-talk-pill-btn"
-            aria-label="Download Resume"
-          >
-            <span>Resume</span>
-            <Download size={14} className="nav-talk-arrow" />
-          </a>
-        </div>
-
-        {/* Mobile Controls Tray */}
-        <div className="nav-mobile-tray">
-          <a 
-            href="/resume.pdf"
-            download="Ankit_Kumar_Resume.pdf"
-            className="nav-talk-pill-btn mobile-compact"
-            aria-label="Download Resume"
-          >
-            <span>Resume</span>
-            <Download size={13} className="nav-talk-arrow" />
-          </a>
-          <button 
-            className="nav-mobile-hamburger" 
-            onClick={onOpenMenu}
-            aria-label="Open navigation menu"
-          >
-            <Menu size={18} />
-          </button>
-        </div>
-      </nav>
+          <span>Resume</span>
+          <Download size={14} className="nav-resume-icon" />
+        </a>
+      </div>
     </header>
   );
 }
-
-
