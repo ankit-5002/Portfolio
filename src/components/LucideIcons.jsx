@@ -1,4 +1,5 @@
 export { default as ArrowUpRight } from 'lucide-react/dist/esm/icons/arrow-up-right.mjs';
+export { default as ArrowRight } from 'lucide-react/dist/esm/icons/arrow-right.mjs';
 export { default as ArrowUp } from 'lucide-react/dist/esm/icons/arrow-up.mjs';
 export { default as Download } from 'lucide-react/dist/esm/icons/download.mjs';
 export { default as MapPin } from 'lucide-react/dist/esm/icons/map-pin.mjs';
@@ -9,5 +10,4 @@ export { default as Globe } from 'lucide-react/dist/esm/icons/globe.mjs';
 export { default as Volume2 } from 'lucide-react/dist/esm/icons/volume-2.mjs';
 export { default as VolumeX } from 'lucide-react/dist/esm/icons/volume-x.mjs';
 export { default as Music } from 'lucide-react/dist/esm/icons/music.mjs';
-export { default as RotateCcw } from 'lucide-react/dist/esm/icons/rotate-ccw.mjs';
-export { default as Dices } from 'lucide-react/dist/esm/icons/dices.mjs';
+

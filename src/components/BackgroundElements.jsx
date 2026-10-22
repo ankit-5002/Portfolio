@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 const STAMPS = [
   // 0: bird/stamp
   <svg key="s0" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" /><path d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 0 0 5 0" /></svg>,

@@ -8,11 +8,6 @@ export default function AtelierPage({ onNavigate }) {
 
   return (
     <div className="subpage-wrapper">
-      <header className="subpage-nav">
-        <button onClick={() => onNavigate('/')} className="subpage-back-btn" aria-label="Return to portfolio home page">
-          ← Back to Home
-        </button>
-      </header>
       <main className="subpage-main">
         <div className="wrap">
           <div className="sec-head reveal in" style={{ marginTop: '40px' }}>

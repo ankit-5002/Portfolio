@@ -68,7 +68,7 @@ const DraggableCard = ({ children, className, defaultZ = 10, isFocused, onFocus 
 
   const handleMouseDown = (e) => {
     if (e.button !== 0) return;
-    if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.win-btn') || e.target.closest('.code-card-actions') || e.target.closest('input')) return;
+    if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input')) return;
 
     e.preventDefault();
     setIsDragging(true);

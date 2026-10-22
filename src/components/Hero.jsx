@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 const CARES_ABOUT = ['design.', 'accessibility.', 'performance.', 'humans.'];
 
-export default function Hero({ onNavigate }) {
-  const [hoveredNav, setHoveredNav] = useState(null);
+export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
 

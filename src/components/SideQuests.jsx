@@ -39,7 +39,6 @@ export default function SideQuests() {
     <section id="quests">
       <div className="wrap">
         <div className="sec-head reveal in">
-          <span className="sec-num">05</span>
           <h2 className="sec-title lm">
             <span style={{ '--d': 1 }}>
               Side <i>quests</i>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 

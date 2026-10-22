@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ArrowUpRight } from './LucideIcons';
 import {
   SiPython, SiReact, SiJavascript, SiHtml5, SiCss,
   SiPandas, SiNumpy, SiScikitlearn, SiPytorch, SiTensorflow,
@@ -10,9 +9,6 @@ import {
 import cardImg1 from '../assets/skill_card1.webp';
 import cardImg2 from '../assets/skill_card2.webp';
 import cardImg3 from '../assets/skill_card3.webp';
-import project1Img from '../assets/project1.webp';
-import project2Img from '../assets/project2.webp';
-import picture1Img from '../assets/picture1.webp';
 import infosysLogo from '../assets/infosys.jpeg';
 import rkforgeLogo from '../assets/RKFORGE.png';
 import campustechLogo from '../assets/Campustech.jpeg';

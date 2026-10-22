@@ -154,7 +154,7 @@ export default function App() {
     return (
       <>
         <main id="top">
-          <Hero onNavigate={navigate} />
+          <Hero />
           <About />
           <Skills />
           <FeaturedProjectsStack />

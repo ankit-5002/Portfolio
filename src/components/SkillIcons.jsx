@@ -1,5 +1,4 @@
 /* Automatically generated lightweight SVG icon components to eliminate 16+ MB barrel imports */
-import React from "react";
 
 export function SiPython({ size = 14, color, 'aria-hidden': ariaHidden = 'true', className, style, ...props }) {
   return (

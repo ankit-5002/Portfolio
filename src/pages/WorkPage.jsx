@@ -1,25 +1,23 @@
 import { useEffect } from 'react';
 import Work from '../components/Work';
 import SideQuests from '../components/SideQuests';
-import Lab from '../components/Lab';
 import Ticker from '../components/Ticker';
 import Footer from '../components/Footer';
 
 export default function WorkPage({ onNavigate }) {
   useEffect(() => {
     window.scrollTo(0, 0);
+    const prevBg = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = '#240605';
+    return () => {
+      document.body.style.backgroundColor = prevBg;
+    };
   }, []);
 
   return (
-    <div className="subpage-wrapper">
-      <header className="subpage-nav">
-        <button onClick={() => onNavigate('/')} className="subpage-back-btn" aria-label="Return to portfolio home page">
-          ← Back to Home
-        </button>
-      </header>
+    <div className="subpage-wrapper work-page-wrapper">
       <main className="subpage-main">
         <Work />
-        <Lab />
         <Ticker />
         <SideQuests />
       </main>
